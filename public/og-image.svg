@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <rect x="60" y="60" width="1080" height="510" rx="16" fill="#1e293b"/>
+
+  <!-- Logo mark -->
+  <rect x="120" y="120" width="48" height="48" rx="8" fill="#2563eb"/>
+  <rect x="132" y="132" width="24" height="4" rx="2" fill="white"/>
+  <rect x="132" y="142" width="18" height="4" rx="2" fill="white"/>
+  <rect x="132" y="152" width="20" height="4" rx="2" fill="white"/>
+
+  <!-- Brand name -->
+  <text x="184" y="153" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="600" fill="#f1f5f9">Resume Builder</text>
+
+  <!-- Main headline -->
+  <text x="120" y="290" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="700" fill="#f8fafc">Free Resume Builder</text>
+  <text x="120" y="370" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="700" fill="#f8fafc">for Professionals</text>
+
+  <!-- Subtext -->
+  <text x="120" y="440" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="#94a3b8">ATS-friendly templates · No account required · Download as PDF</text>
+
+  <!-- CTA badge -->
+  <rect x="120" y="490" width="180" height="44" rx="22" fill="#2563eb"/>
+  <text x="210" y="518" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="600" fill="white" text-anchor="middle">Free to use</text>
+</svg>
