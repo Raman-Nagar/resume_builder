@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://resumebuilder.app";
+const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://resumebuilder.ramannagar.in/";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +35,10 @@ export const metadata: Metadata = {
     "resume maker",
     "pdf resume",
   ],
-  authors: [{ name: "Resume Builder" }],
+  authors: [{ name: "Raman Nagar", url: "https://ramannagar.in" }],
+  verification: {
+    google: "847efaa3bf22d635",
+  },
   openGraph: {
     type: "website",
     siteName: "Resume Builder",
@@ -44,6 +48,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    site: "@resumebuilder",
     title: "Free Resume Builder — Create a Professional Resume Online",
     description:
       "Build a professional resume in minutes. Free, private, no sign-up required.",
@@ -56,7 +61,20 @@ export const metadata: Metadata = {
       follow: true,
       "max-image-preview": "large",
       "max-snippet": -1,
+      "max-video-preview": -1,
     },
+  },
+};
+
+const jsonLdWebSite = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Resume Builder",
+  url: BASE_URL,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: { "@type": "EntryPoint", urlTemplate: `${BASE_URL}?q={search_term_string}` },
+    "query-input": "required name=search_term_string",
   },
 };
 
@@ -77,7 +95,11 @@ const jsonLd = {
   url: BASE_URL,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html
       lang="en"
@@ -85,11 +107,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <head>
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#2563eb" />
         <meta name="color-scheme" content="light" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="apple-touch-icon" href="/favicon.svg" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdWebSite) }}
         />
       </head>
       <body>{children}</body>

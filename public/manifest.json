@@ -1,0 +1,13 @@
+{
+  "name": "Resume Builder",
+  "short_name": "Resume Builder",
+  "description": "Free online resume builder. ATS-friendly templates, no account required.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "icons": [
+    { "src": "/favicon.ico", "sizes": "16x16", "type": "image/x-icon" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

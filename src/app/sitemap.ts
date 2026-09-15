@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://resumebuilder.app";
+const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://resumebuilder.ramannagar.in/";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
