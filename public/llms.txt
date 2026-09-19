@@ -19,7 +19,11 @@ resumebuilder.ramannagar.in is a free, privacy-first resume builder built for jo
 - /blog/how-to-write-a-resume: Step-by-step guide to writing a resume in 2025
 - /blog/ats-resume-tips: 10 tips to make a resume pass ATS systems
 - /blog/best-resume-format-2025: Comparison of resume formats in 2025
+- /blog/resume-summary-examples: 20 resume summary examples for every industry
+- /blog/resume-skills-section: How to write a resume skills section with examples
+- /blog/how-to-write-a-cover-letter: How to write a cover letter in 2025 with examples
 - /privacy: Privacy policy
+- /terms: Terms of use
 
 ## Key facts
 - Price: Free

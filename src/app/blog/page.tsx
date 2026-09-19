@@ -24,7 +24,7 @@ const POSTS = [
   {
     href: "/blog/ats-resume-tips",
     title: "10 ATS Resume Tips to Get Past the Bots in 2025",
-    description: "Over 98% of large companies use ATS to filter resumes. Here's how to make sure yours gets through.",
+    description: "Over 98% of large companies use ATS to filter resumes. Here\'s how to make sure yours gets through.",
     readTime: "6 min read",
   },
   {
@@ -32,6 +32,24 @@ const POSTS = [
     title: "Best Resume Format in 2025 — Which One Should You Use?",
     description: "Reverse-chronological, functional, or combination? Find out which format is right for your situation.",
     readTime: "7 min read",
+  },
+  {
+    href: "/blog/resume-summary-examples",
+    title: "20 Resume Summary Examples That Get Interviews in 2025",
+    description: "Copy-paste resume summary examples for every industry and experience level — software, marketing, design, and more.",
+    readTime: "7 min read",
+  },
+  {
+    href: "/blog/resume-skills-section",
+    title: "How to Write a Resume Skills Section in 2025 (With Examples)",
+    description: "What skills to include, how to format them, and examples for every industry. Hard skills vs soft skills explained.",
+    readTime: "6 min read",
+  },
+  {
+    href: "/blog/how-to-write-a-cover-letter",
+    title: "How to Write a Cover Letter in 2025 — With Examples",
+    description: "Step-by-step guide with a full example, common mistakes to avoid, and tips for graduates and career changers.",
+    readTime: "8 min read",
   },
 ];
 

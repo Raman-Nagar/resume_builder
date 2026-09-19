@@ -68,6 +68,10 @@ export default function PrivacyPage() {
         </a>
         .
       </p>
+
+      <p style={{ marginTop: 40, paddingTop: 24, borderTop: "1px solid #e2e8f0" }}>
+        <Link href="/terms" style={{ color: "#2563eb" }}>Terms of Use</Link>
+      </p>
     </main>
   );
 }
