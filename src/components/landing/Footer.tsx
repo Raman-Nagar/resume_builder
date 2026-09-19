@@ -3,6 +3,7 @@ import Link from "next/link";
 const LINKS = {
   Product: [
     { label: "Resume Builder", href: "/builder" },
+    { label: "Templates", href: "/templates" },
     { label: "Classic Template", href: "/templates/classic-resume-template" },
     { label: "Modern Template", href: "/templates/modern-resume-template" },
     { label: "Minimal Template", href: "/templates/minimal-resume-template" },

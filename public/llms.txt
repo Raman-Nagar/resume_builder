@@ -12,6 +12,7 @@ resumebuilder.ramannagar.in is a free, privacy-first resume builder built for jo
 ## Pages
 - /: Landing page — overview of features, templates, and how it works
 - /builder: Resume editor — the main app
+- /templates: All resume templates index
 - /templates/classic-resume-template: Classic single-column resume template
 - /templates/modern-resume-template: Modern two-column resume template
 - /templates/minimal-resume-template: Minimal typography-first resume template
