@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Page background -->
+  <rect width="32" height="32" rx="6" fill="#2563eb"/>
+  <!-- Resume page shape -->
+  <rect x="8" y="5" width="16" height="22" rx="2" fill="#ffffff"/>
+  <!-- Header line (name) -->
+  <rect x="11" y="9" width="10" height="2" rx="1" fill="#2563eb"/>
+  <!-- Divider -->
+  <rect x="11" y="13" width="10" height="0.75" rx="0.375" fill="#cbd5e1"/>
+  <!-- Content lines -->
+  <rect x="11" y="15.5" width="10" height="1.25" rx="0.625" fill="#94a3b8"/>
+  <rect x="11" y="18" width="7" height="1.25" rx="0.625" fill="#94a3b8"/>
+  <rect x="11" y="20.5" width="9" height="1.25" rx="0.625" fill="#94a3b8"/>
+  <rect x="11" y="23" width="6" height="1.25" rx="0.625" fill="#94a3b8"/>
+</svg>

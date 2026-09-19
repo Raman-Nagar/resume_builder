@@ -38,7 +38,7 @@ export function ClassicTemplate({ resume }: TemplateProps) {
   // Section heading — break-after:avoid keeps it glued to the first entry
   function SectionHeading({ label }: { label: string }) {
     return (
-      <div data-print-section style={{ marginBottom: "0.55em" }}>
+      <div data-print-section style={{ marginBottom: "0.7em" }}>
         <div style={{
           fontSize: fs * 0.66,
           lineHeight: 1.2,
@@ -157,7 +157,7 @@ export function ClassicTemplate({ resume }: TemplateProps) {
                   // data-print-entry on the whole card keeps title+company+first bullet together
                   <div key={e.id} data-print-entry style={{ marginBottom: ei < experience.length - 1 ? "0.9em" : 0 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "1em", marginBottom: "0.18em" }}>
-                      <span style={{ fontSize: fs * 0.92, lineHeight: 1.25, fontWeight: 700, fontFamily: uiFont, color: dark }}>
+                      <span style={{ fontSize: fs * 0.92, lineHeight: 1.25, fontWeight: 700, fontFamily: uiFont, color: dark, minWidth: 0, overflow: "hidden" }}>
                         {e.title}
                       </span>
                       <span data-print-date style={{ fontSize: fs * 0.76, lineHeight: 1.3, fontFamily: uiFont, color: muted, flexShrink: 0 }}>
@@ -185,7 +185,7 @@ export function ClassicTemplate({ resume }: TemplateProps) {
                 {education.map((e, ei) => (
                   <div key={e.id} data-print-entry style={{ marginBottom: ei < education.length - 1 ? "0.9em" : 0 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "1em", marginBottom: "0.18em" }}>
-                      <span style={{ fontSize: fs * 0.92, lineHeight: 1.25, fontWeight: 700, fontFamily: uiFont, color: dark }}>
+                      <span style={{ fontSize: fs * 0.92, lineHeight: 1.25, fontWeight: 700, fontFamily: uiFont, color: dark, minWidth: 0, overflow: "hidden" }}>
                         {[e.degree, e.field].filter(Boolean).join(" in ")}
                       </span>
                       <span data-print-date style={{ fontSize: fs * 0.76, lineHeight: 1.3, fontFamily: uiFont, color: muted, flexShrink: 0 }}>
@@ -234,7 +234,7 @@ export function ClassicTemplate({ resume }: TemplateProps) {
                 {projects.map((proj, pi) => (
                   <div key={proj.id} data-print-entry style={{ marginBottom: pi < projects.length - 1 ? "0.9em" : 0 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "1em", marginBottom: "0.18em" }}>
-                      <span style={{ fontSize: fs * 0.92, lineHeight: 1.25, fontWeight: 700, fontFamily: uiFont, color: dark }}>
+                      <span style={{ fontSize: fs * 0.92, lineHeight: 1.25, fontWeight: 700, fontFamily: uiFont, color: dark, minWidth: 0, overflow: "hidden" }}>
                         {proj.name}
                       </span>
                       {(proj.startDate || proj.current) && (
@@ -267,7 +267,7 @@ export function ClassicTemplate({ resume }: TemplateProps) {
                 {certifications.map((c, ci) => (
                   <div key={c.id} data-print-entry style={{ marginBottom: ci < certifications.length - 1 ? "0.6em" : 0 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "1em", marginBottom: "0.18em" }}>
-                      <span style={{ fontSize: fs * 0.92, lineHeight: 1.25, fontWeight: 700, fontFamily: uiFont, color: dark }}>
+                      <span style={{ fontSize: fs * 0.92, lineHeight: 1.25, fontWeight: 700, fontFamily: uiFont, color: dark, minWidth: 0, overflow: "hidden" }}>
                         {c.name}
                       </span>
                       {c.issueDate && (
@@ -303,7 +303,7 @@ export function ClassicTemplate({ resume }: TemplateProps) {
                 {achievements.map((a, ai) => (
                   <div key={a.id} data-print-entry style={{ marginBottom: ai < achievements.length - 1 ? "0.6em" : 0 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "1em", marginBottom: "0.18em" }}>
-                      <span style={{ fontSize: fs * 0.92, lineHeight: 1.25, fontWeight: 700, fontFamily: uiFont, color: dark }}>
+                      <span style={{ fontSize: fs * 0.92, lineHeight: 1.25, fontWeight: 700, fontFamily: uiFont, color: dark, minWidth: 0, overflow: "hidden" }}>
                         {a.title}
                       </span>
                       {a.date && (
@@ -326,7 +326,7 @@ export function ClassicTemplate({ resume }: TemplateProps) {
                 {volunteer.map((v, vi) => (
                   <div key={v.id} data-print-entry style={{ marginBottom: vi < volunteer.length - 1 ? "0.9em" : 0 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "1em", marginBottom: "0.18em" }}>
-                      <span style={{ fontSize: fs * 0.92, lineHeight: 1.25, fontWeight: 700, fontFamily: uiFont, color: dark }}>
+                      <span style={{ fontSize: fs * 0.92, lineHeight: 1.25, fontWeight: 700, fontFamily: uiFont, color: dark, minWidth: 0, overflow: "hidden" }}>
                         {v.role}
                       </span>
                       <span data-print-date style={{ fontSize: fs * 0.76, lineHeight: 1.3, fontFamily: uiFont, color: muted, flexShrink: 0 }}>
@@ -361,7 +361,7 @@ export function ClassicTemplate({ resume }: TemplateProps) {
                 {cs.items.map((item, ii) => (
                   <div key={item.id} data-print-entry style={{ marginBottom: ii < cs.items.length - 1 ? "0.7em" : 0 }}>
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "1em", marginBottom: "0.18em" }}>
-                      <span style={{ fontSize: fs * 0.92, lineHeight: 1.25, fontWeight: 700, fontFamily: uiFont, color: dark }}>
+                      <span style={{ fontSize: fs * 0.92, lineHeight: 1.25, fontWeight: 700, fontFamily: uiFont, color: dark, minWidth: 0, overflow: "hidden" }}>
                         {item.title}
                       </span>
                       {item.date && (
