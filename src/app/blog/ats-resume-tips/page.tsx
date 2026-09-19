@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { RelatedPosts } from "@/components/blog/RelatedPosts";
 
 export const metadata: Metadata = {
   title: "10 ATS Resume Tips to Get Past the Bots in 2025",
@@ -74,10 +75,7 @@ export default function AtsResumeTipsPage() {
           </Link>
         </div>
 
-        <div style={{ display: "flex", gap: 16, flexWrap: "wrap", borderTop: "1px solid #e2e8f0", paddingTop: 24 }}>
-          <Link href="/blog/how-to-write-a-resume" style={{ color: "#2563eb" }}>→ How to Write a Resume</Link>
-          <Link href="/blog/best-resume-format-2025" style={{ color: "#2563eb" }}>→ Best Resume Format 2025</Link>
-        </div>
+        <RelatedPosts currentHref="/blog/ats-resume-tips" />
       </main>
     </>
   );
