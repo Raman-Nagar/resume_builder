@@ -33,7 +33,7 @@ export default function ModernTemplatePage() {
         <nav aria-label="Breadcrumb" style={{ fontSize: 14, marginBottom: 32, color: "#64748b" }}>
           <Link href="/" style={{ color: "#2563eb" }}>Home</Link>
           {" › "}
-          <Link href="/#templates" style={{ color: "#2563eb" }}>Templates</Link>
+          <Link href="/templates" style={{ color: "#2563eb" }}>Templates</Link>
           {" › "}
           <span>Modern</span>
         </nav>

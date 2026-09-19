@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://resumebuilder.ramannagar.in/";
+const BASE_URL = "https://resumebuilder.ramannagar.in";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -9,9 +8,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: "/builder",
+        disallow: "/builder/",
       },
     ],
-    sitemap: `${BASE_URL}sitemap.xml`,
+    sitemap: `${BASE_URL}/sitemap.xml`,
   };
 }

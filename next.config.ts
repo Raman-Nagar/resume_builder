@@ -16,8 +16,8 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        // Cache public assets (favicon, manifest, llms.txt) for 1 week
-        source: "/(favicon.ico|favicon.svg|manifest.json|llms.txt|robots.txt)",
+        // Cache public assets for 1 week
+        source: "/(favicon.ico|favicon.svg|manifest.json|llms.txt|robots.txt|icon-192.png|icon-512.png)",
         headers: [
           { key: "Cache-Control", value: "public, max-age=604800, stale-while-revalidate=86400" },
         ],
