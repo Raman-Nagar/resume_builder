@@ -19,7 +19,7 @@ export default function NotFound() {
           <Link href="/" className="btn btn-primary btn-md">
             Go home
           </Link>
-          <Link href="/builder" className="btn btn-secondary btn-md">
+          <Link href="/choose-template" className="btn btn-secondary btn-md">
             Open builder
           </Link>
         </div>

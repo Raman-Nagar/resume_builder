@@ -53,7 +53,7 @@ export function TemplatesSection() {
         </div>
 
         <div className="lp-templates-cta">
-          <Link href="/builder" className="btn btn-primary btn-lg">
+          <Link href="/choose-template" className="btn btn-primary btn-lg">
             Create your resume
           </Link>
           <p className="lp-templates-cta-note">Free · No sign-up required</p>

@@ -36,7 +36,7 @@ export function BlogStickyCTA() {
     }}>
       <span style={{ color: "#94a3b8" }}>Ready to build yours?</span>
       <Link
-        href="/builder"
+        href="/choose-template"
         style={{
           backgroundColor: "#2563eb",
           color: "white",

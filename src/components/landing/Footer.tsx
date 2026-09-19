@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const LINKS = {
   Product: [
-    { label: "Resume Builder", href: "/builder" },
+    { label: "Resume Builder", href: "/choose-template" },
     { label: "Templates", href: "/templates" },
     { label: "Classic Template", href: "/templates/classic-resume-template" },
     { label: "Modern Template", href: "/templates/modern-resume-template" },

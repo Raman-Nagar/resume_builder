@@ -1,7 +1,7 @@
 import type { TemplateProps } from "./TemplateProps";
 import {
   dateRange, formatDate, orderedVisible, groupSkills,
-  resolveFontSize, resolveFont, resolveFontSans, MARGIN_PX,
+  resolveAccent, resolveFontSize, resolveFont, resolveFontSans, MARGIN_PX, clampDesign,
 } from "./templateUtils";
 
 export function ClassicTemplate({ resume }: TemplateProps) {
@@ -10,9 +10,11 @@ export function ClassicTemplate({ resume }: TemplateProps) {
     experience, education, skills, projects,
     certifications, languages, achievements,
     volunteer, interests, customSections,
-    design, settings,
+    settings,
   } = resume;
+  const design = clampDesign(resume.design);
 
+  const accent   = resolveAccent(design);
   const mg       = MARGIN_PX[design.pageMargin] ?? 40;
   const fmt      = settings.dateFormat;
   const fs       = resolveFontSize(design);
@@ -47,8 +49,9 @@ export function ClassicTemplate({ resume }: TemplateProps) {
           textTransform: "uppercase" as const,
           fontFamily: uiFont,
           color: dark,
-          paddingBottom: "0.4em",
-          borderBottom: `1.5px solid ${ink}`,
+          paddingBottom: design.showDividers ? "0.4em" : 0,
+          borderBottom: `1.5px solid ${accent}`,
+          display: design.showDividers ? undefined : "none",
         }}>
           {label}
         </div>
@@ -87,7 +90,8 @@ export function ClassicTemplate({ resume }: TemplateProps) {
     }}>
 
       {/* ── Header ── */}
-      <div style={{ marginBottom: "1em" }}>
+      <div style={{ marginBottom: "1em", display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1em" }}>
+        <div style={{ minWidth: 0 }}>
         <div style={{
           fontSize: fs * 1.75,
           lineHeight: 1.1,
@@ -130,10 +134,15 @@ export function ClassicTemplate({ resume }: TemplateProps) {
             ))}
           </div>
         )}
+        </div>
+        {p.photo && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={p.photo} alt="" style={{ width: "4em", height: "4em", borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
+        )}
       </div>
 
       {/* Divider rule */}
-      <div style={{ height: "1px", backgroundColor: ink, marginBottom: `${mg * 0.7}px`, opacity: 0.85 }} />
+      {design.showDividers && <div style={{ height: "1px", backgroundColor: accent, marginBottom: `${mg * 0.7}px`, opacity: 0.85 }} />}
 
       {/* ── Sections ── */}
       {sections.map((sec) => {

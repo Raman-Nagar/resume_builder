@@ -13,7 +13,7 @@ export function FinalCTA() {
             Free, private, and ready to download.
           </p>
           <div className="lp-final-cta__actions">
-            <Link href="/builder" className="btn btn-primary btn-lg lp-hero__cta-primary">
+            <Link href="/choose-template" className="btn btn-primary btn-lg lp-hero__cta-primary">
               Create My Resume
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M5 12h14M12 5l7 7-7 7" />

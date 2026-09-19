@@ -31,11 +31,11 @@ export function Hero() {
           </p>
 
           <div className="lp-hero__actions">
-            <Link href="/builder" className="btn btn-primary btn-lg lp-hero__cta-primary">
+            <Link href="/choose-template" className="btn btn-primary btn-lg lp-hero__cta-primary">
               Create My Resume
               <ArrowRight />
             </Link>
-            <Link href="#templates" className="btn btn-secondary btn-lg">
+            <Link href="/#templates" className="btn btn-secondary btn-lg">
               Explore Templates
             </Link>
           </div>

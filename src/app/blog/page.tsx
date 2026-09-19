@@ -103,7 +103,7 @@ export default function BlogIndexPage() {
       <div style={{ marginTop: 48, padding: "24px 28px", backgroundColor: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: 8 }}>
         <p style={{ fontWeight: 600, marginBottom: 8 }}>Ready to build your resume?</p>
         <p style={{ color: "#475569", marginBottom: 16 }}>Apply what you&apos;ve learned with our free resume builder. No account required.</p>
-        <Link href="/builder" style={{ display: "inline-block", backgroundColor: "#2563eb", color: "white", padding: "12px 28px", borderRadius: 8, fontWeight: 600, textDecoration: "none" }}>
+        <Link href="/choose-template" style={{ display: "inline-block", backgroundColor: "#2563eb", color: "white", padding: "12px 28px", borderRadius: 8, fontWeight: 600, textDecoration: "none" }}>
           Build My Resume — Free
         </Link>
       </div>

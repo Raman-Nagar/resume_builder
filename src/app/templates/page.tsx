@@ -134,7 +134,7 @@ export default function TemplatesIndexPage() {
         <div style={{ backgroundColor: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: 8, padding: "28px 32px", textAlign: "center" }}>
           <p style={{ fontWeight: 700, fontSize: 20, marginBottom: 8 }}>Ready to build your resume?</p>
           <p style={{ color: "#475569", marginBottom: 20 }}>Pick any template and start editing — free, no account required.</p>
-          <Link href="/builder" style={{ display: "inline-block", backgroundColor: "#2563eb", color: "white", padding: "14px 36px", borderRadius: 8, fontWeight: 600, textDecoration: "none", fontSize: 16 }}>
+          <Link href="/choose-template" style={{ display: "inline-block", backgroundColor: "#2563eb", color: "white", padding: "14px 36px", borderRadius: 8, fontWeight: 600, textDecoration: "none", fontSize: 16 }}>
             Build My Resume — Free
           </Link>
         </div>

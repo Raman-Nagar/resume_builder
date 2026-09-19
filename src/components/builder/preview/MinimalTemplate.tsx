@@ -1,7 +1,7 @@
 import type { TemplateProps } from "./TemplateProps";
 import {
   dateRange, formatDate, orderedVisible, groupSkills,
-  resolveAccent, resolveFontSize, resolveFont, resolveFontSans, MARGIN_PX,
+  resolveAccent, resolveFontSize, resolveFont, resolveFontSans, MARGIN_PX, clampDesign,
 } from "./templateUtils";
 
 export function MinimalTemplate({ resume }: TemplateProps) {
@@ -10,8 +10,9 @@ export function MinimalTemplate({ resume }: TemplateProps) {
     experience, education, skills, projects,
     certifications, languages, achievements,
     volunteer, interests, customSections,
-    design, settings,
+    settings,
   } = resume;
+  const design = clampDesign(resume.design);
 
   const accent   = resolveAccent(design);
   const mg       = MARGIN_PX[design.pageMargin] ?? 40;
@@ -41,13 +42,13 @@ export function MinimalTemplate({ resume }: TemplateProps) {
   // data-print-section on the label keeps it from orphaning at page bottom
   function Section({ label, children, last }: { label: string; children: React.ReactNode; last?: boolean }) {
     return (
-      <div style={{
+      <div data-print-section style={{
         display: "flex", gap: "2em",
         paddingTop: `${mg * 0.65}px`,
         paddingBottom: last ? 0 : `${mg * 0.65}px`,
-        borderTop: `1px solid ${rule}`,
+        borderTop: design.showDividers ? `1px solid ${rule}` : "none",
       }}>
-        <div data-print-section style={{ width: "8.5em", flexShrink: 0, paddingTop: "0.08em" }}>
+        <div style={{ minWidth: "8.5em", flexShrink: 0, paddingTop: "0.08em" }}>
           <span style={{ fontSize: fs * 0.64, fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" as const, color: accent, fontFamily: uiFont, lineHeight: 1.3 }}>
             {label}
           </span>
@@ -96,7 +97,8 @@ export function MinimalTemplate({ resume }: TemplateProps) {
       width: "100%", boxSizing: "border-box",
     }}>
       {/* ── Header ── */}
-      <div style={{ marginBottom: `${mg * 0.85}px` }}>
+      <div style={{ marginBottom: `${mg * 0.85}px`, display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1em" }}>
+        <div style={{ minWidth: 0 }}>
         <div style={{ fontSize: fs * 1.9, fontWeight: 700, color: ink, letterSpacing: "-0.025em", lineHeight: 1.05, marginBottom: "0.2em", fontFamily: bodyFont }}>
           {p.fullName || "Your Name"}
         </div>
@@ -114,6 +116,11 @@ export function MinimalTemplate({ resume }: TemplateProps) {
               </span>
             ))}
           </div>
+        )}
+        </div>
+        {p.photo && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={p.photo} alt="" style={{ width: "4em", height: "4em", borderRadius: "50%", objectFit: "cover", flexShrink: 0 }} />
         )}
       </div>
 

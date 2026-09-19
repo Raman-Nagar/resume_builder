@@ -11,18 +11,30 @@ export function usePrint() {
     const spacer = scaler.nextElementSibling as HTMLElement | null;
 
     // Read the top/bottom padding the template applies to its root div.
-    // We use @page margin-top/bottom (not padding on a content element)
-    // because @page margins are the only mechanism the print engine applies
-    // independently to every page. The named margin boxes (@top-*, @bottom-*)
-    // are set to empty content so Chrome does not render its native
-    // headers/footers (date, title, URL, page numbers) in that space.
+    // For single-column templates (Classic, Minimal) this is on firstElementChild.
+    // For Modern (flex sidebar+main), padding is on the sidebar/main children,
+    // so we walk into the first deeply-padded descendant.
     const templateRoot = paper?.firstElementChild as HTMLElement | null;
-    const computedPaddingTop = templateRoot
-      ? parseFloat(getComputedStyle(templateRoot).paddingTop) || 0
-      : 0;
-    const computedPaddingBottom = templateRoot
-      ? parseFloat(getComputedStyle(templateRoot).paddingBottom) || 0
-      : 0;
+    const getTopPadding = (el: HTMLElement | null): number => {
+      if (!el) return 0;
+      const v = parseFloat(getComputedStyle(el).paddingTop) || 0;
+      if (v > 0) return v;
+      // Try first child (Modern: sidebar is first child of flex wrapper)
+      const child = el.firstElementChild as HTMLElement | null;
+      return child ? parseFloat(getComputedStyle(child).paddingTop) || 0 : 0;
+    };
+    const getBottomPadding = (el: HTMLElement | null): number => {
+      if (!el) return 0;
+      const v = parseFloat(getComputedStyle(el).paddingBottom) || 0;
+      if (v > 0) return v;
+      const child = el.firstElementChild as HTMLElement | null;
+      return child ? parseFloat(getComputedStyle(child).paddingBottom) || 0 : 0;
+    };
+    const computedPaddingTop    = getTopPadding(templateRoot);
+    const computedPaddingBottom = getBottomPadding(templateRoot);
+
+    // Convert px (96dpi screen) → mm for accurate @page margins at printer DPI
+    const pxToMm = (px: number) => `${(px / 3.7795).toFixed(2)}mm`;
 
     // Inject print styles:
     // - @page margin-top/bottom = template's padding → consistent spacing on every page
@@ -32,8 +44,8 @@ export function usePrint() {
     styleEl.id = "rp-print-page-margins";
     styleEl.textContent = `
       @page {
-        margin-top: ${computedPaddingTop}px;
-        margin-bottom: ${computedPaddingBottom}px;
+        margin-top: ${pxToMm(computedPaddingTop)};
+        margin-bottom: ${pxToMm(computedPaddingBottom)};
         @top-left    { content: ""; }
         @top-center  { content: ""; }
         @top-right   { content: ""; }
@@ -42,7 +54,11 @@ export function usePrint() {
         @bottom-right   { content: ""; }
       }
       @media print {
-        .rp-paper > * { padding-top: 0 !important; padding-bottom: 0 !important; }
+        /* Zero top/bottom padding on the template root to avoid double-spacing
+           on page 1 (the @page margin already provides that spacing).
+           Only applies when the root itself carries the padding (Classic/Minimal).
+           Modern's padding lives on sidebar/main children, not the flex wrapper. */
+        .rp-paper > *[style*="padding"] { padding-top: 0 !important; padding-bottom: 0 !important; }
       }
     `;
     document.head.appendChild(styleEl);
@@ -74,8 +90,15 @@ export function usePrint() {
     if (paper)  paper.style.width    = "100%";
     if (spacer) spacer.style.display = "none";   // hides the height-spacer div → no blank 3rd page
 
-    window.addEventListener("afterprint", restore);
-    window.print();
+    // Fallback for iOS/Safari where afterprint may not fire on cancel
+    const fallbackTimer = setTimeout(restore, 3000);
+    window.addEventListener("afterprint", () => { clearTimeout(fallbackTimer); restore(); }, { once: true });
+    try {
+      window.print();
+    } catch {
+      clearTimeout(fallbackTimer);
+      restore();
+    }
   }, []);
 
   return { triggerPrint };

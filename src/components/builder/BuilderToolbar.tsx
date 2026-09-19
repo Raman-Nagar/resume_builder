@@ -1,7 +1,10 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { ResumePreview } from "@/components/landing/ResumePreview";
 import type { SaveStatus } from "@/hooks/useAutosave";
+import type { TemplateId } from "@/lib/resume/types";
 
 interface Props {
   title: string;
@@ -14,6 +17,8 @@ interface Props {
   onPreviewToggle: () => void;
   isPreviewOpen: boolean;
   onDownload: () => void;
+  currentTemplate: TemplateId;
+  onTemplateChange: (t: TemplateId) => void;
 }
 
 export function BuilderToolbar({
@@ -27,6 +32,8 @@ export function BuilderToolbar({
   onPreviewToggle,
   isPreviewOpen,
   onDownload,
+  currentTemplate,
+  onTemplateChange,
 }: Props) {
   return (
     <header className="rb-toolbar" role="banner">
@@ -52,6 +59,9 @@ export function BuilderToolbar({
 
       {/* Actions */}
       <div className="rb-toolbar__actions">
+        {/* Template switcher */}
+        <TemplateSwitcher current={currentTemplate} onChange={onTemplateChange} />
+
         {/* Undo / Redo */}
         <div className="rb-toolbar__action-group" role="group" aria-label="History">
           <button
@@ -126,6 +136,119 @@ export function BuilderToolbar({
         </button>
       </div>
     </header>
+  );
+}
+
+// ─── Template switcher ───────────────────────────────────────────────────────
+
+const TEMPLATES: { id: TemplateId; label: string; tag: string; accent: string }[] = [
+  { id: "classic", label: "Classic", tag: "Most popular", accent: "#2563eb" },
+  { id: "modern",  label: "Modern",  tag: "Great for tech", accent: "#7c3aed" },
+  { id: "minimal", label: "Minimal", tag: "Clean & elegant", accent: "#0f172a" },
+];
+
+function TemplateSwitcher({ current, onChange }: { current: TemplateId; onChange: (t: TemplateId) => void }) {
+  const [open, setOpen] = useState(false);
+  const [alignRight, setAlignRight] = useState(false);
+  const [measured, setMeasured] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) { setMeasured(false); setAlignRight(false); return; }
+    // Measure after paint to detect overflow
+    const frame = requestAnimationFrame(() => {
+      if (dropdownRef.current) {
+        const rect = dropdownRef.current.getBoundingClientRect();
+        setAlignRight(rect.right > window.innerWidth - 16);
+      }
+      setMeasured(true);
+    });
+    function handleClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    function handleKey(e: KeyboardEvent) {
+      if (e.key === "Escape") setOpen(false);
+    }
+    document.addEventListener("mousedown", handleClick);
+    document.addEventListener("keydown", handleKey);
+    return () => {
+      cancelAnimationFrame(frame);
+      document.removeEventListener("mousedown", handleClick);
+      document.removeEventListener("keydown", handleKey);
+    };
+  }, [open]);
+
+  const active = TEMPLATES.find((t) => t.id === current) ?? TEMPLATES[0];
+
+  return (
+    <div ref={ref} className="rb-tmpl-switcher">
+      <button
+        type="button"
+        className={`btn btn-ghost btn-sm rb-tmpl-switcher__btn${open ? " rb-tmpl-switcher__btn--open" : ""}`}
+        onClick={() => setOpen((v) => !v)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-label={`Template: ${active.label}`}
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+        </svg>
+        <span className="rb-tmpl-switcher__label">{active.label}</span>
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="rb-tmpl-switcher__chevron">
+          <path d="M6 9l6 6 6-6" />
+        </svg>
+      </button>
+
+      {open && (
+        <div
+          ref={dropdownRef}
+          className="rb-tmpl-switcher__dropdown"
+          style={{
+            ...(alignRight ? { left: "auto", right: 0 } : undefined),
+            visibility: measured ? "visible" : "hidden",
+          }}
+          role="listbox"
+          aria-label="Choose template"
+        >
+          <div className="rb-tmpl-switcher__dropdown-heading">Switch template</div>
+          <div className="rb-tmpl-switcher__cards">
+            {TEMPLATES.map((t) => {
+              const isActive = t.id === current;
+              return (
+                <button
+                  key={t.id}
+                  type="button"
+                  role="option"
+                  aria-selected={isActive}
+                  className={`rb-tmpl-switcher__card${isActive ? " rb-tmpl-switcher__card--active" : ""}`}
+                  style={{ "--tmpl-accent": t.accent } as React.CSSProperties}
+                  onClick={() => { onChange(t.id); setOpen(false); }}
+                >
+                  <div className="rb-tmpl-switcher__preview">
+                    <div className="rb-tmpl-switcher__preview-scaler">
+                      <ResumePreview variant={t.id} />
+                    </div>
+                    {isActive && (
+                      <div className="rb-tmpl-switcher__check" aria-hidden="true">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                          <polyline points="20 6 9 17 4 12" />
+                        </svg>
+                      </div>
+                    )}
+                  </div>
+                  <div className="rb-tmpl-switcher__card-name">{t.label}</div>
+                  <div className="rb-tmpl-switcher__card-tag">{t.tag}</div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 

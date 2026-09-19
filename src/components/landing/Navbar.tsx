@@ -11,13 +11,13 @@ export function Navbar() {
 
         <nav className="lp-navbar__nav" aria-label="Main navigation">
           <Link href="/templates" className="lp-navbar__link">Templates</Link>
-          <Link href="#features" className="lp-navbar__link">Features</Link>
+          <Link href="/#features" className="lp-navbar__link">Features</Link>
           <Link href="/blog" className="lp-navbar__link">Blog</Link>
-          <Link href="#faq" className="lp-navbar__link">FAQ</Link>
+          <Link href="/#faq" className="lp-navbar__link">FAQ</Link>
         </nav>
 
         <div className="lp-navbar__actions">
-          <Link href="/builder" className="btn btn-primary btn-sm">
+          <Link href="/choose-template" className="btn btn-primary btn-sm">
             Create Resume
           </Link>
         </div>

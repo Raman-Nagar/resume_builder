@@ -94,7 +94,7 @@ export default function HowToWriteResumePage() {
         <div style={{ backgroundColor: "#eff6ff", border: "1px solid #bfdbfe", borderRadius: 8, padding: "24px 28px", marginBottom: 40 }}>
           <p style={{ fontWeight: 600, marginBottom: 8 }}>Ready to build your resume?</p>
           <p style={{ marginBottom: 16, color: "#475569" }}>Use our free resume builder to apply everything in this guide. Choose a template, fill in your details, and download a PDF in minutes.</p>
-          <Link href="/builder" style={{ display: "inline-block", backgroundColor: "#2563eb", color: "white", padding: "12px 28px", borderRadius: 8, fontWeight: 600, textDecoration: "none" }}>
+          <Link href="/choose-template" style={{ display: "inline-block", backgroundColor: "#2563eb", color: "white", padding: "12px 28px", borderRadius: 8, fontWeight: 600, textDecoration: "none" }}>
             Build My Resume — Free
           </Link>
         </div>

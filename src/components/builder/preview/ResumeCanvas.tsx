@@ -40,7 +40,7 @@ export function ResumeCanvas({ resume }: Props) {
   }, []);
 
   const scaledW    = A4_W * scale;
-  const leftOffset = scale < 1 ? Math.max(0, (wrapW - scaledW) / 2) : 0;
+  const leftOffset = Math.max(0, (wrapW - scaledW) / 2);
 
   return (
     // rp-canvas-wrap is the scroll container reference point

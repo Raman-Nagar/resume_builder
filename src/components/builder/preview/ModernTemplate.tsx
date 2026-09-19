@@ -1,7 +1,7 @@
 import type { TemplateProps } from "./TemplateProps";
 import {
   dateRange, formatDate, orderedVisible, groupSkills,
-  resolveAccent, resolveFontSize, resolveFont, resolveFontSans, MARGIN_PX,
+  resolveAccent, resolveFontSize, resolveFont, resolveFontSans, MARGIN_PX, clampDesign,
 } from "./templateUtils";
 
 function IconEmail()    { return <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>; }
@@ -114,8 +114,9 @@ export function ModernTemplate({ resume }: TemplateProps) {
     experience, education, skills, projects,
     certifications, languages, achievements,
     volunteer, interests, customSections,
-    design, settings,
+    settings,
   } = resume;
+  const design = clampDesign(resume.design);
 
   const accent   = resolveAccent(design);
   const mg       = MARGIN_PX[design.pageMargin] ?? 40;
@@ -277,8 +278,13 @@ export function ModernTemplate({ resume }: TemplateProps) {
           width: "3.4em", height: "3.4em", borderRadius: "50%", backgroundColor: accent,
           color: "#ffffff", display: "flex", alignItems: "center", justifyContent: "center",
           fontSize: fs * 1.1, fontWeight: 700, marginBottom: "0.85em", flexShrink: 0, letterSpacing: "-0.02em",
+          overflow: "hidden",
         }}>
-          {initials}
+          {p.photo
+            // eslint-disable-next-line @next/next/no-img-element
+            ? <img src={p.photo} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            : initials
+          }
         </div>
         <div style={{ fontSize: fs * 1.2, fontWeight: 700, color: "#f8fafc", lineHeight: 1.2, marginBottom: "0.25em", letterSpacing: "-0.01em", fontFamily: bodyFont }}>
           {p.fullName || "Your Name"}
@@ -294,7 +300,7 @@ export function ModernTemplate({ resume }: TemplateProps) {
             <div style={{ display: "flex", flexDirection: "column", gap: "0.45em" }}>
               {contactItems.map((item, i) => (
                 <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.55em", fontSize: fs * 0.72, color: sidebarText, lineHeight: 1.45, wordBreak: "break-all" as const }}>
-                  <span style={{ color: sidebarFaint, flexShrink: 0, marginTop: "0.1em" }}>{item.icon}</span>
+                  {design.showIcons && <span style={{ color: sidebarFaint, flexShrink: 0, marginTop: "0.1em" }}>{item.icon}</span>}
                   <span>{item.text}</span>
                 </div>
               ))}
@@ -321,7 +327,7 @@ export function ModernTemplate({ resume }: TemplateProps) {
                         {sk.level && (
                           <span style={{ display: "flex", gap: "2px" }}>
                             {[1,2,3,4,5].map((n) => (
-                              <span key={n} style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: n <= (levelDots[sk.level] ?? 3) ? accent : `${accent}33` }} />
+                              <span key={n} style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: n <= (levelDots[sk.level] ?? 3) ? accent : "rgba(255,255,255,0.15)" }} />
                             ))}
                           </span>
                         )}

@@ -1,10 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { ResumeProvider } from "@/store/ResumeContext";
+import { ResumeProvider, useResume } from "@/store/ResumeContext";
 import { useUndoRedo } from "@/hooks/useUndoRedo";
 import { usePrint } from "@/hooks/usePrint";
-import { useAutosave } from "@/hooks/useAutosave";
 import { SAMPLE_RESUME } from "@/lib/resume/sample";
 import { createEmptyResume } from "@/lib/resume/defaults";
 import { loadResume as loadFromStorage } from "@/lib/resume/storage";
@@ -14,7 +13,7 @@ import { PreviewPanel } from "./PreviewPanel";
 import { WelcomeScreen } from "./WelcomeScreen";
 import { StorageBanner } from "./StorageBanner";
 import type { EditorSection } from "./EditorNav";
-import type { Resume } from "@/lib/resume/types";
+import type { Resume, TemplateId } from "@/lib/resume/types";
 
 // ─── First-use detection ──────────────────────────────────────────────────────
 
@@ -27,32 +26,21 @@ function isFirstUse(resume: Resume): boolean {
   );
 }
 
-// ─── Public export ────────────────────────────────────────────────────────────
+// ─── Inner shell (reads saveStatus from context) ─────────────────────────────
 
-interface Props {
-  initialResume?: Resume;
+interface InnerProps {
+  undo: () => void;
+  redo: () => void;
+  canUndo: boolean;
+  canRedo: boolean;
+  initialTemplate?: TemplateId;
 }
 
-export function BuilderShell({ initialResume }: Props) {
-  const seed = useMemo(() => {
-    try {
-      return initialResume ?? loadFromStorage() ?? createEmptyResume();
-    } catch {
-      return createEmptyResume();
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const { resume, dispatch, undo, redo, canUndo, canRedo } = useUndoRedo(seed);
+function BuilderInner({ undo, redo, canUndo, canRedo, initialTemplate }: InnerProps) {
+  const { resume, dispatch, loadResume, saveStatus } = useResume();
   const { triggerPrint } = usePrint();
-  const saveStatus = useAutosave(resume);
 
-  const loadResume = useCallback(
-    (r: Resume) => dispatch({ type: "RESET_RESUME", payload: r }),
-    [dispatch]
-  );
-
-  const [welcomed, setWelcomed] = useState(() => !isFirstUse(seed));
+  const [welcomed, setWelcomed] = useState(() => !!initialTemplate || !isFirstUse(resume));
   const [activeSection, setActiveSection] = useState<EditorSection>("personal");
   const [mobileView, setMobileView] = useState<"edit" | "preview">("edit");
 
@@ -67,6 +55,11 @@ export function BuilderShell({ initialResume }: Props) {
     return () => window.removeEventListener("keydown", handleKey);
   }, [undo, redo]);
 
+  const handleTemplateChange = useCallback(
+    (t: TemplateId) => dispatch({ type: "SET_DESIGN", payload: { template: t } }),
+    [dispatch]
+  );
+
   const handleTitleChange = useCallback(
     (title: string) => dispatch({ type: "SET_TITLE", payload: title }),
     [dispatch]
@@ -75,9 +68,10 @@ export function BuilderShell({ initialResume }: Props) {
   const handleStartBlank = useCallback(() => setWelcomed(true), []);
 
   const handleLoadSample = useCallback(() => {
-    loadResume({ ...SAMPLE_RESUME, id: resume.id });
+    const template = initialTemplate ?? SAMPLE_RESUME.design.template;
+    loadResume({ ...SAMPLE_RESUME, id: resume.id, design: { ...SAMPLE_RESUME.design, template } });
     setWelcomed(true);
-  }, [loadResume, resume.id]);
+  }, [loadResume, resume.id, initialTemplate]);
 
   const handlePreviewToggle = useCallback(
     () => setMobileView((v) => (v === "edit" ? "preview" : "edit")),
@@ -95,75 +89,110 @@ export function BuilderShell({ initialResume }: Props) {
   }, [triggerPrint, resume.design.template]);
 
   return (
-    <ResumeProvider resume={resume} dispatch={dispatch} loadResume={loadResume}>
-      <div className="rb-shell">
-        <StorageBanner />
+    <div className="rb-shell">
+      <StorageBanner />
 
-        {!welcomed ? (
-          <WelcomeScreen onStartBlank={handleStartBlank} onLoadSample={handleLoadSample} />
-        ) : (
-          <>
-            <BuilderToolbar
-              title={resume.title}
-              saveStatus={saveStatus}
-              canUndo={canUndo}
-              canRedo={canRedo}
-              onUndo={undo}
-              onRedo={redo}
-              onTitleChange={handleTitleChange}
-              onPreviewToggle={handlePreviewToggle}
-              isPreviewOpen={mobileView === "preview"}
-              onDownload={handleDownload}
-            />
+      {!welcomed ? (
+        <WelcomeScreen onStartBlank={handleStartBlank} onLoadSample={handleLoadSample} />
+      ) : (
+        <>
+          <BuilderToolbar
+            title={resume.title}
+            saveStatus={saveStatus}
+            canUndo={canUndo}
+            canRedo={canRedo}
+            onUndo={undo}
+            onRedo={redo}
+            onTitleChange={handleTitleChange}
+            onPreviewToggle={handlePreviewToggle}
+            isPreviewOpen={mobileView === "preview"}
+            onDownload={handleDownload}
+            currentTemplate={resume.design.template}
+            onTemplateChange={handleTemplateChange}
+          />
 
-            <div className="rb-workspace">
-              <div
-                className={`rb-workspace__editor${mobileView === "preview" ? " rb-workspace__editor--hidden-mobile" : ""}`}
-              >
-                <EditorPanel
-                  activeSection={activeSection}
-                  onSectionChange={setActiveSection}
-                />
-              </div>
-
-              <div
-                className={`rb-workspace__preview${mobileView === "edit" ? " rb-workspace__preview--hidden-mobile" : ""}`}
-              >
-                <PreviewPanel />
-              </div>
+          <div className="rb-workspace">
+            <div
+              className={`rb-workspace__editor${mobileView === "preview" ? " rb-workspace__editor--hidden-mobile" : ""}`}
+            >
+              <EditorPanel
+                activeSection={activeSection}
+                onSectionChange={setActiveSection}
+              />
             </div>
 
-            <nav className="rb-mobile-tabs" aria-label="View switcher">
-              <button
-                type="button"
-                className={`rb-mobile-tabs__btn${mobileView === "edit" ? " rb-mobile-tabs__btn--active" : ""}`}
-                onClick={() => setMobileView("edit")}
-                aria-pressed={mobileView === "edit"}
-                aria-label="Edit resume"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-                </svg>
-                Edit
-              </button>
-              <button
-                type="button"
-                className={`rb-mobile-tabs__btn${mobileView === "preview" ? " rb-mobile-tabs__btn--active" : ""}`}
-                onClick={() => setMobileView("preview")}
-                aria-pressed={mobileView === "preview"}
-                aria-label="Preview resume"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                  <circle cx="12" cy="12" r="3" />
-                </svg>
-                Preview
-              </button>
-            </nav>
-          </>
-        )}
-      </div>
+            <div
+              className={`rb-workspace__preview${mobileView === "edit" ? " rb-workspace__preview--hidden-mobile" : ""}`}
+            >
+              <PreviewPanel />
+            </div>
+          </div>
+
+          <nav className="rb-mobile-tabs" aria-label="View switcher">
+            <button
+              type="button"
+              className={`rb-mobile-tabs__btn${mobileView === "edit" ? " rb-mobile-tabs__btn--active" : ""}`}
+              onClick={() => setMobileView("edit")}
+              aria-pressed={mobileView === "edit"}
+              aria-label="Edit resume"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+              </svg>
+              Edit
+            </button>
+            <button
+              type="button"
+              className={`rb-mobile-tabs__btn${mobileView === "preview" ? " rb-mobile-tabs__btn--active" : ""}`}
+              onClick={() => setMobileView("preview")}
+              aria-pressed={mobileView === "preview"}
+              aria-label="Preview resume"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                <circle cx="12" cy="12" r="3" />
+              </svg>
+              Preview
+            </button>
+          </nav>
+        </>
+      )}
+    </div>
+  );
+}
+
+// ─── Public export ────────────────────────────────────────────────────────────
+
+interface Props {
+  initialResume?: Resume;
+  initialTemplate?: TemplateId;
+}
+
+export function BuilderShell({ initialResume, initialTemplate }: Props) {
+  const seed = useMemo(() => {
+    try {
+      const base = initialResume ?? loadFromStorage() ?? createEmptyResume();
+      if (initialTemplate) {
+        return { ...base, design: { ...base.design, template: initialTemplate } };
+      }
+      return base;
+    } catch {
+      return createEmptyResume();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const { resume, dispatch, undo, redo, canUndo, canRedo } = useUndoRedo(seed);
+
+  const loadResume = useCallback(
+    (r: Resume) => dispatch({ type: "RESET_RESUME", payload: r }),
+    [dispatch]
+  );
+
+  return (
+    <ResumeProvider resume={resume} dispatch={dispatch} loadResume={loadResume}>
+      <BuilderInner undo={undo} redo={redo} canUndo={canUndo} canRedo={canRedo} initialTemplate={initialTemplate} />
     </ResumeProvider>
   );
 }
