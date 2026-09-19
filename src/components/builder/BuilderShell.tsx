@@ -84,6 +84,16 @@ export function BuilderShell({ initialResume }: Props) {
     []
   );
 
+  const handleDownload = useCallback(() => {
+    if (typeof window !== "undefined" && "gtag" in window) {
+      (window as unknown as { gtag: (...args: unknown[]) => void }).gtag("event", "download_pdf", {
+        event_category: "engagement",
+        event_label: resume.design.template,
+      });
+    }
+    triggerPrint();
+  }, [triggerPrint, resume.design.template]);
+
   return (
     <ResumeProvider resume={resume} dispatch={dispatch} loadResume={loadResume}>
       <div className="rb-shell">
@@ -103,7 +113,7 @@ export function BuilderShell({ initialResume }: Props) {
               onTitleChange={handleTitleChange}
               onPreviewToggle={handlePreviewToggle}
               isPreviewOpen={mobileView === "preview"}
-              onDownload={triggerPrint}
+              onDownload={handleDownload}
             />
 
             <div className="rb-workspace">

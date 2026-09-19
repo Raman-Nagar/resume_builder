@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { RelatedPosts } from "@/components/blog/RelatedPosts";
+import { BlogStickyCTA } from "@/components/blog/BlogStickyCTA";
 
 export const metadata: Metadata = {
   title: "Best Resume Format in 2025 — Which One Should You Use?",
@@ -114,6 +115,7 @@ export default function BestResumeFormatPage() {
 
         <RelatedPosts currentHref="/blog/best-resume-format-2025" />
       </main>
+      <BlogStickyCTA />
     </>
   );
 }

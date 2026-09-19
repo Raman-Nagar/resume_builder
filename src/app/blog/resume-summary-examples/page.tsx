@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { RelatedPosts } from "@/components/blog/RelatedPosts";
+import { BlogStickyCTA } from "@/components/blog/BlogStickyCTA";
 
 export const metadata: Metadata = {
   title: "20 Resume Summary Examples That Get Interviews in 2025",
@@ -126,6 +127,7 @@ export default function ResumeSummaryExamplesPage() {
 
         <RelatedPosts currentHref="/blog/resume-summary-examples" />
       </main>
+      <BlogStickyCTA />
     </>
   );
 }

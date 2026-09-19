@@ -47,6 +47,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
     },
     {
+      url: `${BASE_URL}/blog/how-to-list-education-on-a-resume`,
+      lastModified: new Date("2025-01-01"),
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/blog/resume-action-verbs`,
+      lastModified: new Date("2025-01-01"),
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/blog/resume-objective-examples`,
+      lastModified: new Date("2025-01-01"),
+      changeFrequency: "yearly",
+      priority: 0.7,
+    },
+    {
       url: `${BASE_URL}/blog/how-to-write-a-cover-letter`,
       lastModified: new Date("2025-01-01"),
       changeFrequency: "yearly",

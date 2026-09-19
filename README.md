@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Resume Builder
+
+Free online resume builder at [resumebuilder.ramannagar.in](https://resumebuilder.ramannagar.in). Built with Next.js 15, deployed on Vercel.
+
+- ATS-friendly templates (Classic, Modern, Minimal)
+- Live preview, one-click PDF download
+- No account required — data stays in the browser (localStorage)
+- Privacy-first: nothing is sent to any server
+
+## Stack
+
+- **Framework**: Next.js 15 (App Router, Turbopack)
+- **Language**: TypeScript
+- **Styling**: CSS custom properties (design tokens in `globals.css`)
+- **Analytics**: Google Analytics (`G-YSJBLHXQFW`), Microsoft Clarity (`yktn6voi9e`)
+- **Testing**: Vitest
+- **Deployment**: Vercel (auto-deploy on push)
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── blog/              # 6 blog posts (Article JSON-LD, OG images)
+│   ├── builder/           # Resume editor (client-side app)
+│   ├── templates/         # Template pages + index
+│   ├── privacy/           # Privacy policy
+│   ├── terms/             # Terms of use
+│   ├── layout.tsx         # Root layout (GA, Clarity, JSON-LD)
+│   ├── page.tsx           # Landing page
+│   ├── sitemap.ts         # 14-URL sitemap
+│   └── robots.ts          # Allows /, disallows /builder/
+├── components/
+│   ├── blog/              # RelatedPosts component
+│   ├── builder/           # Editor UI (forms, preview, sections)
+│   ├── landing/           # Landing page sections
+│   └── ui/                # Shared UI primitives
+├── lib/
+│   ├── og.tsx             # Shared OG image generator
+│   ├── resume/            # Resume types, defaults, storage, validation
+│   └── utils.ts
+└── store/                 # ResumeContext + reducer
+public/
+├── manifest.json          # PWA manifest
+├── llms.txt               # AI crawler manifest
+├── icon-192.png
+└── icon-512.png
+```
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Commands
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev      # Start dev server (Turbopack)
+npm run build    # Production build
+npm run lint     # ESLint
+npm test         # Vitest
+```
 
-## Learn More
+## SEO
 
-To learn more about Next.js, take a look at the following resources:
+- Metadata + canonical URLs on every page
+- JSON-LD: `SoftwareApplication`, `WebSite`, `FAQPage`, `HowTo`, `BreadcrumbList`, `Article`, `CollectionPage`, `CreativeWork`
+- OG images generated via `@vercel/og` for all pages
+- Sitemap at `/sitemap.xml`, robots at `/robots.txt`
+- Google Search Console verified (`google847efaa3bf22d635.html`)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Push to `main` → Vercel auto-deploys.

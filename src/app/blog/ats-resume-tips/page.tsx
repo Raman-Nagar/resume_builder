@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { RelatedPosts } from "@/components/blog/RelatedPosts";
+import { BlogStickyCTA } from "@/components/blog/BlogStickyCTA";
 
 export const metadata: Metadata = {
   title: "10 ATS Resume Tips to Get Past the Bots in 2025",
@@ -77,6 +78,7 @@ export default function AtsResumeTipsPage() {
 
         <RelatedPosts currentHref="/blog/ats-resume-tips" />
       </main>
+      <BlogStickyCTA />
     </>
   );
 }

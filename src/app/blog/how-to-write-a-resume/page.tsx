@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { RelatedPosts } from "@/components/blog/RelatedPosts";
+import { BlogStickyCTA } from "@/components/blog/BlogStickyCTA";
 
 export const metadata: Metadata = {
   title: "How to Write a Resume in 2025 — Step-by-Step Guide",
@@ -100,6 +101,7 @@ export default function HowToWriteResumePage() {
 
         <RelatedPosts currentHref="/blog/how-to-write-a-resume" />
       </main>
+      <BlogStickyCTA />
     </>
   );
 }

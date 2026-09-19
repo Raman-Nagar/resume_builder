@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { RelatedPosts } from "@/components/blog/RelatedPosts";
+import { BlogStickyCTA } from "@/components/blog/BlogStickyCTA";
 
 export const metadata: Metadata = {
   title: "How to Write a Resume Skills Section in 2025 (With Examples)",
@@ -129,6 +130,7 @@ export default function ResumeSkillsSectionPage() {
 
         <RelatedPosts currentHref="/blog/resume-skills-section" />
       </main>
+      <BlogStickyCTA />
     </>
   );
 }

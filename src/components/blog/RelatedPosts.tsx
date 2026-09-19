@@ -6,6 +6,9 @@ const ALL_POSTS = [
   { href: "/blog/best-resume-format-2025", title: "Best Resume Format in 2025", readTime: "7 min read", category: "Resume Guide" },
   { href: "/blog/resume-summary-examples", title: "20 Resume Summary Examples That Get Interviews", readTime: "7 min read", category: "Resume Tips" },
   { href: "/blog/resume-skills-section", title: "How to Write a Resume Skills Section", readTime: "6 min read", category: "Resume Tips" },
+  { href: "/blog/resume-objective-examples", title: "20 Resume Objective Examples for 2025", readTime: "6 min read", category: "Resume Tips" },
+  { href: "/blog/resume-action-verbs", title: "185 Resume Action Verbs for 2025", readTime: "7 min read", category: "Resume Tips" },
+  { href: "/blog/how-to-list-education-on-a-resume", title: "How to List Education on a Resume", readTime: "6 min read", category: "Resume Guide" },
   { href: "/blog/how-to-write-a-cover-letter", title: "How to Write a Cover Letter in 2025", readTime: "8 min read", category: "Career Guide" },
 ];
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { RelatedPosts } from "@/components/blog/RelatedPosts";
+import { BlogStickyCTA } from "@/components/blog/BlogStickyCTA";
 
 export const metadata: Metadata = {
   title: "How to Write a Cover Letter in 2025 — With Examples",
@@ -113,6 +114,7 @@ export default function HowToWriteCoverLetterPage() {
 
         <RelatedPosts currentHref="/blog/how-to-write-a-cover-letter" />
       </main>
+      <BlogStickyCTA />
     </>
   );
 }

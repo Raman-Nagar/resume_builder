@@ -46,6 +46,24 @@ const POSTS = [
     readTime: "6 min read",
   },
   {
+    href: "/blog/how-to-list-education-on-a-resume",
+    title: "How to List Education on a Resume in 2025 (With Examples)",
+    description: "What to include, where to put it, how to handle GPA, multiple degrees, unfinished degrees, and online courses.",
+    readTime: "6 min read",
+  },
+  {
+    href: "/blog/resume-action-verbs",
+    title: "185 Resume Action Verbs to Make Your Bullet Points Stand Out (2025)",
+    description: "Strong action verbs organised by category — leadership, technical, analytical, creative, and more. Replace weak words and get more interviews.",
+    readTime: "7 min read",
+  },
+  {
+    href: "/blog/resume-objective-examples",
+    title: "20 Resume Objective Examples for 2025 (Any Job or Experience Level)",
+    description: "Copy-paste resume objective examples for students, career changers, and every industry. Learn when to use an objective vs summary.",
+    readTime: "6 min read",
+  },
+  {
     href: "/blog/how-to-write-a-cover-letter",
     title: "How to Write a Cover Letter in 2025 — With Examples",
     description: "Step-by-step guide with a full example, common mistakes to avoid, and tips for graduates and career changers.",
