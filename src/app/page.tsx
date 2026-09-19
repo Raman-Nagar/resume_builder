@@ -8,6 +8,7 @@ import { PrivacySection } from "@/components/landing/PrivacySection";
 import { FAQ } from "@/components/landing/FAQ";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 import { Footer } from "@/components/landing/Footer";
+import { Testimonials } from "@/components/landing/Testimonials";
 
 export const metadata: Metadata = {
   title: "Free Resume Builder — Create a Professional Resume Online",
@@ -72,6 +73,7 @@ export default function LandingPage() {
         <HowItWorks />
         <TemplatesSection />
         <PrivacySection />
+        <Testimonials />
         <FAQ />
         <FinalCTA />
       </main>
