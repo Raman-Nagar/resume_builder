@@ -14,11 +14,40 @@ export const metadata: Metadata = {
   description:
     "Build a professional resume in minutes with our free online resume builder. ATS-friendly templates, live preview, and one-click PDF download. No account required.",
   alternates: {
-    canonical: "/",
+    canonical: "https://resumebuilder.ramannagar.in/",
   },
   openGraph: {
     url: "https://resumebuilder.ramannagar.in/",
+    title: "Free Resume Builder — Create a Professional Resume Online",
+    description: "Build a professional resume in minutes. ATS-friendly templates, live preview, one-click PDF download. Free, no account required.",
+    type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free Resume Builder — Create a Professional Resume Online",
+    description: "Build a professional resume in minutes. Free, private, no sign-up required.",
+  },
+};
+
+const jsonLdBreadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://resumebuilder.ramannagar.in/" },
+  ],
+};
+
+const jsonLdHowTo = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How to Build a Professional Resume Online",
+  description: "Create a professional, ATS-friendly resume in minutes using Resume Builder — free, no account required.",
+  totalTime: "PT15M",
+  step: [
+    { "@type": "HowToStep", position: 1, name: "Choose a template", text: "Pick from Classic, Modern, or Minimal — each designed to impress hiring managers and pass ATS screening." },
+    { "@type": "HowToStep", position: 2, name: "Add your information", text: "Fill in your experience, education, skills, and more using the structured editor. Your data saves automatically." },
+    { "@type": "HowToStep", position: 3, name: "Download your resume", text: "Export a pixel-perfect PDF in one click. Ready to send to recruiters or attach to job applications." },
+  ],
 };
 
 const jsonLdFaq = {
@@ -47,10 +76,9 @@ export default function LandingPage() {
         <FinalCTA />
       </main>
       <Footer />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdFaq) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdHowTo) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }} />
     </>
   );
 }

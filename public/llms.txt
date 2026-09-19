@@ -1,0 +1,30 @@
+# Resume Builder
+> Free online resume builder. No account required. Data stays in your browser. ATS-friendly templates. PDF export.
+
+## About
+resumebuilder.ramannagar.in is a free, privacy-first resume builder built for job seekers.
+- No sign-up or account required
+- Resume data stored only in the browser (localStorage) — never sent to any server
+- ATS-friendly templates: Classic, Modern, Minimal
+- One-click PDF export
+- Built by Raman Nagar (https://ramannagar.in)
+
+## Pages
+- /: Landing page — overview of features, templates, and how it works
+- /builder: Resume editor — the main app
+- /templates/classic-resume-template: Classic single-column resume template
+- /templates/modern-resume-template: Modern two-column resume template
+- /templates/minimal-resume-template: Minimal typography-first resume template
+- /blog: Resume tips and career advice articles
+- /blog/how-to-write-a-resume: Step-by-step guide to writing a resume in 2025
+- /blog/ats-resume-tips: 10 tips to make a resume pass ATS systems
+- /blog/best-resume-format-2025: Comparison of resume formats in 2025
+- /privacy: Privacy policy
+
+## Key facts
+- Price: Free
+- Account required: No
+- Data privacy: All data stays in the user's browser
+- Supported output: PDF
+- Templates: Classic, Modern, Minimal
+- ATS compatible: Yes

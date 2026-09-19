@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { ClarityInit } from "@/components/ClarityInit";
 import "./globals.css";
 
 const BASE_URL =
@@ -48,7 +50,6 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    site: "@resumebuilder",
     title: "Free Resume Builder — Create a Professional Resume Online",
     description:
       "Build a professional resume in minutes. Free, private, no sign-up required.",
@@ -109,6 +110,7 @@ export default function RootLayout({
       <head>
         <meta name="theme-color" content="#2563eb" />
         <meta name="color-scheme" content="light" />
+        <meta name="author" content="Raman Nagar" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -125,6 +127,8 @@ export default function RootLayout({
         />
       </head>
       <body>{children}</body>
+      <ClarityInit />
+      <GoogleAnalytics gaId="G-YSJBLHXQFW" />
     </html>
   );
 }

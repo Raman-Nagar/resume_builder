@@ -9,11 +9,11 @@ import { SectionShell } from "./SectionShell";
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const LEVELS: Array<{ value: Skill["level"]; label: string; color: string }> = [
-  { value: "",             label: "No level",     color: "var(--gray-300)" },
-  { value: "beginner",     label: "Beginner",     color: "var(--green-500)" },
+  { value: "", label: "No level", color: "var(--gray-300)" },
+  { value: "beginner", label: "Beginner", color: "var(--green-500)" },
   { value: "intermediate", label: "Intermediate", color: "var(--amber-500)" },
-  { value: "advanced",     label: "Advanced",     color: "var(--blue-500)" },
-  { value: "expert",       label: "Expert",       color: "var(--gray-800)" },
+  { value: "advanced", label: "Advanced", color: "var(--blue-500)" },
+  { value: "expert", label: "Expert", color: "var(--gray-800)" },
 ];
 
 const UNCATEGORIZED = "General";
@@ -35,7 +35,9 @@ function SkillChip({
   const levelInfo = LEVELS.find((l) => l.value === skill.level) ?? LEVELS[0];
 
   return (
-    <div className={`rb-skill-chip-v2${showLevel ? " rb-skill-chip-v2--expanded" : ""}`}>
+    <div
+      className={`rb-skill-chip-v2${showLevel ? " rb-skill-chip-v2--expanded" : ""}`}
+    >
       <div className="rb-skill-chip-v2__main">
         <span
           className="rb-skill-chip-v2__dot"
@@ -58,7 +60,17 @@ function SkillChip({
           aria-label={`Set level for ${skill.name || "skill"}`}
           title="Set proficiency level"
         >
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <svg
+            width="11"
+            height="11"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
             <path d="m6 9 6 6 6-6" />
           </svg>
         </button>
@@ -68,20 +80,37 @@ function SkillChip({
           onClick={onDelete}
           aria-label={`Remove ${skill.name || "skill"}`}
         >
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <svg
+            width="10"
+            height="10"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
             <path d="M18 6 6 18M6 6l12 12" />
           </svg>
         </button>
       </div>
 
       {showLevel && (
-        <div className="rb-skill-chip-v2__levels" role="group" aria-label="Proficiency level">
+        <div
+          className="rb-skill-chip-v2__levels"
+          role="group"
+          aria-label="Proficiency level"
+        >
           {LEVELS.map((l) => (
             <button
               key={l.value}
               type="button"
               className={`rb-skill-level-btn${skill.level === l.value ? " rb-skill-level-btn--active" : ""}`}
-              onClick={() => { onUpdate({ level: l.value }); setShowLevel(false); }}
+              onClick={() => {
+                onUpdate({ level: l.value });
+                setShowLevel(false);
+              }}
               style={{ "--level-color": l.color } as React.CSSProperties}
             >
               {l.label}
@@ -121,7 +150,6 @@ function SkillGroup({
   const [nameInput, setNameInput] = useState(name);
   const [nameError, setNameError] = useState("");
   const [confirmDelete, setConfirmDelete] = useState(false);
-  const [newSkillId, setNewSkillId] = useState<string | null>(null);
   const nameRef = useRef<HTMLInputElement>(null);
 
   function commitRename() {
@@ -152,7 +180,9 @@ function SkillGroup({
   const lastSkillId = skills.length > 0 ? skills[skills.length - 1].id : null;
 
   return (
-    <div className={`rb-skill-group-card${expanded ? " rb-skill-group-card--expanded" : ""}`}>
+    <div
+      className={`rb-skill-group-card${expanded ? " rb-skill-group-card--expanded" : ""}`}
+    >
       {/* Header */}
       <div className="rb-skill-group-card__header">
         <button
@@ -164,8 +194,14 @@ function SkillGroup({
         >
           <svg
             className="rb-skill-group-card__chevron"
-            width="13" height="13" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"
+            width="13"
+            height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             aria-hidden="true"
           >
             <path d="m6 9 6 6 6-6" />
@@ -180,26 +216,50 @@ function SkillGroup({
               type="text"
               value={nameInput}
               aria-label="Group name"
-              onChange={(e) => { setNameInput(e.target.value); setNameError(""); }}
+              onChange={(e) => {
+                setNameInput(e.target.value);
+                setNameError("");
+              }}
               onBlur={commitRename}
               onKeyDown={(e) => {
                 if (e.key === "Enter") commitRename();
-                if (e.key === "Escape") { setNameInput(name); setNameError(""); setEditing(false); }
+                if (e.key === "Escape") {
+                  setNameInput(name);
+                  setNameError("");
+                  setEditing(false);
+                }
               }}
               autoFocus
             />
-            {nameError && <span className="rb-skill-group-card__name-error">{nameError}</span>}
+            {nameError && (
+              <span className="rb-skill-group-card__name-error">
+                {nameError}
+              </span>
+            )}
           </div>
         ) : (
           <button
             type="button"
             className="rb-skill-group-card__name"
-            onClick={() => { setEditing(true); setNameInput(name); }}
+            onClick={() => {
+              setEditing(true);
+              setNameInput(name);
+            }}
             title="Click to rename"
             aria-label={`Rename group ${name}`}
           >
             {name}
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <svg
+              width="11"
+              height="11"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
               <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
               <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
             </svg>
@@ -216,7 +276,11 @@ function SkillGroup({
           {confirmDelete ? (
             <>
               <span className="rb-skill-group-card__confirm-text">
-                Delete{skills.length > 0 ? ` & ${skills.length} skill${skills.length > 1 ? "s" : ""}` : ""}?
+                Delete
+                {skills.length > 0
+                  ? ` & ${skills.length} skill${skills.length > 1 ? "s" : ""}`
+                  : ""}
+                ?
               </span>
               <button
                 type="button"
@@ -239,10 +303,22 @@ function SkillGroup({
             <button
               type="button"
               className="btn btn-ghost btn-sm btn-icon rb-entry-card__delete"
-              onClick={() => skills.length > 0 ? setConfirmDelete(true) : onDelete()}
+              onClick={() =>
+                skills.length > 0 ? setConfirmDelete(true) : onDelete()
+              }
               aria-label={`Delete group ${name}`}
             >
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <svg
+                width="13"
+                height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
                 <polyline points="3 6 5 6 21 6" />
                 <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" />
                 <path d="M10 11v6M14 11v6" />
@@ -274,7 +350,17 @@ function SkillGroup({
             className="rb-skill-group-card__add-skill"
             onClick={handleAddSkill}
           >
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <svg
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
               <path d="M12 5v14M5 12h14" />
             </svg>
             Add skill
@@ -328,7 +414,10 @@ export function SkillsSection() {
   }
 
   function addSkillToGroup(category: string) {
-    dispatch({ type: "ADD_SKILL", payload: createSkill({ name: "", category }) });
+    dispatch({
+      type: "ADD_SKILL",
+      payload: createSkill({ name: "", category }),
+    });
   }
 
   function updateSkill(id: string, data: Partial<Skill>) {
@@ -347,7 +436,16 @@ export function SkillsSection() {
       description="Organise skills into groups — each group appears as a labelled row in your resume."
       isEmpty={isEmpty}
       emptyIcon={
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <svg
+          width="28"
+          height="28"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
           <path d="M12 2H2v10l9.29 9.29a1 1 0 0 0 1.41 0l6.59-6.59a1 1 0 0 0 0-1.41L12 2z" />
           <path d="M7 7h.01" />
         </svg>
@@ -376,7 +474,8 @@ export function SkillsSection() {
       </div>
 
       <p className="field-hint">
-        Click a group name to rename it · Click ∨ on a skill to set proficiency level
+        Click a group name to rename it · Click ∨ on a skill to set proficiency
+        level
       </p>
     </SectionShell>
   );

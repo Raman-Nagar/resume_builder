@@ -3,16 +3,19 @@ import Link from "next/link";
 const LINKS = {
   Product: [
     { label: "Resume Builder", href: "/builder" },
-    { label: "Templates", href: "#templates" },
-    { label: "Features", href: "#features" },
+    { label: "Classic Template", href: "/templates/classic-resume-template" },
+    { label: "Modern Template", href: "/templates/modern-resume-template" },
+    { label: "Minimal Template", href: "/templates/minimal-resume-template" },
   ],
   Resources: [
-    { label: "FAQ", href: "#faq" },
-    { label: "How it works", href: "#how-it-works" },
+    { label: "Blog", href: "/blog" },
+    { label: "How to Write a Resume", href: "/blog/how-to-write-a-resume" },
+    { label: "ATS Resume Tips", href: "/blog/ats-resume-tips" },
+    { label: "Best Resume Format 2025", href: "/blog/best-resume-format-2025" },
   ],
   Legal: [
-    { label: "Privacy Policy", href: "#privacy" },
-    { label: "Terms of Use", href: "#privacy" },
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Use", href: "/privacy" },
   ],
 };
 
