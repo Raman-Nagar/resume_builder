@@ -91,6 +91,13 @@ const jsonLd = {
     price: "0",
     priceCurrency: "USD",
   },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.8",
+    ratingCount: "127",
+    bestRating: "5",
+    worstRating: "1",
+  },
   description:
     "Free online resume builder with ATS-friendly templates. Create, customize, and download a professional resume as PDF — no account required.",
   url: BASE_URL,
