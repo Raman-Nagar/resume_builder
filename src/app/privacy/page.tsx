@@ -13,7 +13,7 @@ export default function PrivacyPage() {
     <main className="prose-page">
       <Link href="/">← Back to Resume Builder</Link>
       <h1>Privacy Policy</h1>
-      <p className="prose-page__meta">Last updated: January 2025</p>
+      <p className="prose-page__meta">Last updated: June 2025</p>
 
       <h2>Data Storage</h2>
       <p>All resume data you enter is stored exclusively in your browser&apos;s <code>localStorage</code>. It never leaves your device and is never transmitted to any server.</p>
@@ -24,8 +24,11 @@ export default function PrivacyPage() {
       <h2>Analytics</h2>
       <p>We use Google Analytics to collect anonymous usage data (page views, session duration). No personally identifiable information is collected. You can opt out via your browser&apos;s privacy settings or a browser extension.</p>
 
+      <h2>Advertising</h2>
+      <p>This site uses Google AdSense to display advertisements. Google and its partners may use cookies to serve ads based on your prior visits to this site or other sites on the internet. You can opt out of personalised advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener noreferrer">Google Ads Settings</a> or <a href="https://www.aboutads.info" target="_blank" rel="noopener noreferrer">aboutads.info</a>.</p>
+
       <h2>Cookies</h2>
-      <p>We do not set any first-party cookies. Google Analytics may set third-party cookies as described in <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google&apos;s Privacy Policy</a>.</p>
+      <p>We do not set any first-party cookies. Google Analytics and Google AdSense may set third-party cookies to measure ad performance and serve relevant ads. For more information, see <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google&apos;s Privacy Policy</a> and <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer">How Google uses cookies in advertising</a>.</p>
 
       <h2>Contact</h2>
       <p>Questions? Reach out at <a href="https://ramannagar.in">ramannagar.in</a>.</p>

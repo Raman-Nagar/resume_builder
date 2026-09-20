@@ -113,13 +113,6 @@ const jsonLd = {
     price: "0",
     priceCurrency: "USD",
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "4.8",
-    ratingCount: "127",
-    bestRating: "5",
-    worstRating: "1",
-  },
   author: {
     "@type": "Person",
     name: "Raman Nagar",
