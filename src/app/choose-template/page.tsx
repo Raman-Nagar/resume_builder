@@ -35,8 +35,8 @@ export default function ChooseTemplatePage() {
         {TEMPLATES.map((t) => (
           <Link key={t.id} href={`/builder?template=${t.id}`} className="choose-tmpl__card" aria-label={`Use ${t.name} template`}>
             <div className="choose-tmpl__preview">
-              <div style={{ position: "absolute", top: 0, left: 0, width: 794, transform: "scale(0.38)", transformOrigin: "top left", pointerEvents: "none" }}>
-                <ResumePreview variant={t.id} />
+              <div style={{ position: "absolute", top: 0, left: 0, width: 500, transform: "scale(0.666)", transformOrigin: "top left", pointerEvents: "none" }}>
+                <ResumePreview variant={t.id} scale={1.5} />
               </div>
             </div>
             <div className="choose-tmpl__info">

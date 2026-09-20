@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const VALID_TEMPLATES = new Set<TemplateId>(["classic", "modern", "minimal"]);
+const VALID_TEMPLATES = new Set<TemplateId>(["classic", "modern", "minimal", "executive", "creative"]);
 
 export default async function BuilderPage({
   searchParams,

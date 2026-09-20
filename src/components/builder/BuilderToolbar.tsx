@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { ResumePreview } from "@/components/landing/ResumePreview";
 import { ResumeScoreBadge } from "./ResumeScore";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { ImportModal } from "./ImportModal";
@@ -172,12 +171,134 @@ export function BuilderToolbar({
 // ─── Template switcher ───────────────────────────────────────────────────────
 
 const TEMPLATES: { id: TemplateId; label: string; tag: string; accent: string }[] = [
-  { id: "classic",   label: "Classic",   tag: "Most popular",    accent: "#2563eb" },
-  { id: "modern",    label: "Modern",    tag: "Great for tech",   accent: "#7c3aed" },
-  { id: "minimal",   label: "Minimal",   tag: "Clean & elegant",  accent: "#0f172a" },
-  { id: "executive", label: "Executive", tag: "Senior roles",     accent: "#1e3a5f" },
-  { id: "creative",  label: "Creative",  tag: "Stand out",        accent: "#0891b2" },
+  { id: "classic",   label: "Classic",   tag: "Most popular",   accent: "#2563eb" },
+  { id: "modern",    label: "Modern",    tag: "Great for tech",  accent: "#7c3aed" },
+  { id: "minimal",   label: "Minimal",   tag: "Clean & elegant", accent: "#0f172a" },
+  { id: "executive", label: "Executive", tag: "Senior roles",    accent: "#1e3a5f" },
+  { id: "creative",  label: "Creative",  tag: "Stand out",       accent: "#0891b2" },
 ];
+
+// SVG thumbnails — lightweight, always crisp, no layout/scale hacks needed
+function TemplateThumbnail({ id, accent }: { id: TemplateId; accent: string }) {
+  const a = accent;
+  if (id === "modern") return (
+    <svg viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="60" height="80" fill="#fafafa"/>
+      <rect width="20" height="80" fill="#1c2333"/>
+      <circle cx="10" cy="10" r="4" fill={a}/>
+      <rect x="3" y="17" width="14" height="2" rx="0.5" fill="#f8fafc"/>
+      <rect x="3" y="21" width="10" height="1.5" rx="0.5" fill="#94a3b8"/>
+      <rect x="3" y="26" width="8" height="1.5" rx="0.5" fill={a}/>
+      <rect x="3" y="29" width="14" height="1" rx="0.5" fill="#64748b"/>
+      <rect x="3" y="32" width="12" height="1" rx="0.5" fill="#64748b"/>
+      <rect x="3" y="38" width="7" height="1.5" rx="0.5" fill={a}/>
+      {[42,46,50,54].map((y,i) => <g key={y}><rect x="3" y={y} width="9" height="1" rx="0.5" fill="#94a3b8"/><rect x="13" y={y} width={`${(4-i)*2}px`} height="1" rx="0.5" fill={a}/></g>)}
+      <rect x="24" y="7" width="2" height="2" rx="0.5" fill={a}/>
+      <rect x="28" y="8" width="12" height="1.5" rx="0.5" fill="#0f172a"/>
+      <rect x="24" y="13" width="18" height="1.5" rx="0.5" fill="#0f172a"/>
+      <rect x="24" y="17" width="13" height="1" rx="0.5" fill="#475569"/>
+      <rect x="24" y="21" width="28" height="1" rx="0.5" fill="#ccc"/>
+      <rect x="24" y="24" width="24" height="1" rx="0.5" fill="#ccc"/>
+      <rect x="24" y="29" width="2" height="2" rx="0.5" fill={a}/>
+      <rect x="28" y="30" width="14" height="1.5" rx="0.5" fill="#0f172a"/>
+      <rect x="24" y="35" width="16" height="1.5" rx="0.5" fill="#0f172a"/>
+      <rect x="24" y="39" width="28" height="1" rx="0.5" fill="#ccc"/>
+      <rect x="24" y="42" width="22" height="1" rx="0.5" fill="#ccc"/>
+    </svg>
+  );
+  if (id === "minimal") return (
+    <svg viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="60" height="80" fill="#fafafa"/>
+      <rect x="6" y="6" width="36" height="5" rx="1" fill="#0a0a0a"/>
+      <rect x="6" y="14" width="22" height="1.5" rx="0.5" fill="#888"/>
+      <rect x="6" y="18" width="42" height="1" rx="0.5" fill="#bbb"/>
+      <rect x="6" y="23" width="48" height="0.5" fill="#d4d4d4"/>
+      <rect x="6" y="26" width="9" height="1.5" rx="0.5" fill={a}/>
+      <rect x="20" y="26" width="21" height="1.5" rx="0.5" fill="#222"/>
+      <rect x="20" y="30" width="15" height="1" rx="0.5" fill="#888"/>
+      <rect x="20" y="34" width="28" height="1" rx="0.5" fill="#ccc"/>
+      <rect x="6" y="40" width="48" height="0.5" fill="#d4d4d4"/>
+      <rect x="6" y="43" width="11" height="1.5" rx="0.5" fill={a}/>
+      <rect x="20" y="43" width="18" height="1.5" rx="0.5" fill="#222"/>
+      <rect x="20" y="47" width="13" height="1" rx="0.5" fill="#888"/>
+      <rect x="20" y="51" width="26" height="1" rx="0.5" fill="#ccc"/>
+      <rect x="6" y="57" width="48" height="0.5" fill="#d4d4d4"/>
+      <rect x="6" y="60" width="8" height="1.5" rx="0.5" fill={a}/>
+      <rect x="20" y="60" width="32" height="1" rx="0.5" fill="#888"/>
+    </svg>
+  );
+  if (id === "executive") return (
+    <svg viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="60" height="80" fill="#fafafa"/>
+      <rect width="60" height="20" fill={a}/>
+      <rect x="6" y="5" width="28" height="4" rx="1" fill="white" fillOpacity="0.95"/>
+      <rect x="6" y="12" width="18" height="1.5" rx="0.5" fill="white" fillOpacity="0.65"/>
+      <rect x="6" y="16" width="36" height="1" rx="0.5" fill="white" fillOpacity="0.45"/>
+      <rect x="6" y="25" width="2" height="6" rx="1" fill={a}/>
+      <rect x="10" y="26" width="12" height="1.5" rx="0.5" fill="#111"/>
+      <rect x="10" y="29" width="40" height="0.5" fill="#e2e8f0"/>
+      <rect x="6" y="33" width="22" height="1.5" rx="0.5" fill="#222"/>
+      <rect x="6" y="37" width="15" height="1" rx="0.5" fill={a} fillOpacity="0.8"/>
+      <rect x="8" y="40" width="38" height="1" rx="0.5" fill="#ccc"/>
+      <rect x="8" y="43" width="32" height="1" rx="0.5" fill="#ccc"/>
+      <rect x="6" y="49" width="2" height="6" rx="1" fill={a}/>
+      <rect x="10" y="50" width="14" height="1.5" rx="0.5" fill="#111"/>
+      <rect x="10" y="53" width="40" height="0.5" fill="#e2e8f0"/>
+      <rect x="6" y="57" width="20" height="1.5" rx="0.5" fill="#222"/>
+      <rect x="6" y="61" width="13" height="1" rx="0.5" fill={a} fillOpacity="0.8"/>
+      <rect x="8" y="64" width="34" height="1" rx="0.5" fill="#ccc"/>
+    </svg>
+  );
+  if (id === "creative") return (
+    <svg viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="60" height="80" fill="#fafafa"/>
+      <rect width="19" height="80" fill={a}/>
+      <circle cx="9.5" cy="10" r="4" fill="white" fillOpacity="0.25"/>
+      <rect x="2" y="17" width="15" height="2" rx="0.5" fill="white" fillOpacity="0.9"/>
+      <rect x="2" y="21" width="11" height="1" rx="0.5" fill="white" fillOpacity="0.55"/>
+      <rect x="2" y="27" width="8" height="1" rx="0.5" fill="white" fillOpacity="0.4"/>
+      <rect x="2" y="30" width="6" height="2.5" rx="1.25" fill="white" fillOpacity="0.2"/>
+      <rect x="10" y="30" width="7" height="2.5" rx="1.25" fill="white" fillOpacity="0.2"/>
+      <rect x="2" y="34" width="8" height="2.5" rx="1.25" fill="white" fillOpacity="0.2"/>
+      <rect x="2" y="40" width="8" height="1" rx="0.5" fill="white" fillOpacity="0.4"/>
+      <rect x="2" y="43" width="15" height="1" rx="0.5" fill="white" fillOpacity="0.55"/>
+      <rect x="22" y="6" width="12" height="1.5" rx="0.5" fill={a}/>
+      <rect x="22" y="10" width="20" height="1.5" rx="0.5" fill="#111"/>
+      <rect x="22" y="14" width="14" height="1" rx="0.5" fill={a} fillOpacity="0.7"/>
+      <rect x="42" y="10" width="12" height="3" rx="1.5" fill={a}/>
+      <rect x="22" y="19" width="30" height="1" rx="0.5" fill="#ccc"/>
+      <rect x="22" y="22" width="24" height="1" rx="0.5" fill="#ccc"/>
+      <rect x="22" y="28" width="12" height="1.5" rx="0.5" fill={a}/>
+      <rect x="22" y="32" width="17" height="1.5" rx="0.5" fill="#111"/>
+      <rect x="22" y="36" width="12" height="1" rx="0.5" fill={a} fillOpacity="0.7"/>
+      <rect x="42" y="32" width="12" height="3" rx="1.5" fill={a}/>
+      <rect x="22" y="41" width="28" height="1" rx="0.5" fill="#ccc"/>
+      <rect x="22" y="44" width="22" height="1" rx="0.5" fill="#ccc"/>
+    </svg>
+  );
+  // classic (default)
+  return (
+    <svg viewBox="0 0 60 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="60" height="80" fill="#fafafa"/>
+      <rect x="6" y="7" width="32" height="4" rx="1" fill="#111"/>
+      <rect x="6" y="13" width="21" height="2" rx="1" fill="#888"/>
+      <rect x="6" y="17" width="40" height="1" rx="0.5" fill="#bbb"/>
+      <rect x="6" y="20" width="48" height="1" fill="#111"/>
+      <rect x="6" y="24" width="14" height="1.5" rx="0.5" fill={a}/>
+      <rect x="6" y="27" width="48" height="0.5" fill="#ccc"/>
+      <rect x="6" y="30" width="22" height="1.5" rx="0.5" fill="#222"/>
+      <rect x="6" y="34" width="16" height="1" rx="0.5" fill="#888"/>
+      <rect x="8" y="37" width="40" height="1" rx="0.5" fill="#ccc"/>
+      <rect x="8" y="40" width="36" height="1" rx="0.5" fill="#ccc"/>
+      <rect x="6" y="45" width="14" height="1.5" rx="0.5" fill={a}/>
+      <rect x="6" y="48" width="48" height="0.5" fill="#ccc"/>
+      <rect x="6" y="51" width="20" height="1.5" rx="0.5" fill="#222"/>
+      <rect x="6" y="55" width="14" height="1" rx="0.5" fill="#888"/>
+      <rect x="8" y="58" width="38" height="1" rx="0.5" fill="#ccc"/>
+      <rect x="8" y="61" width="32" height="1" rx="0.5" fill="#ccc"/>
+    </svg>
+  );
+}
 
 function TemplateSwitcher({ current, onChange }: { current: TemplateId; onChange: (t: TemplateId) => void }) {
   const [open, setOpen] = useState(false);
@@ -261,9 +382,7 @@ function TemplateSwitcher({ current, onChange }: { current: TemplateId; onChange
                   onClick={() => { onChange(t.id); setOpen(false); }}
                 >
                   <div className="rb-tmpl-switcher__preview">
-                    <div className="rb-tmpl-switcher__preview-scaler">
-                      <ResumePreview variant={t.id} />
-                    </div>
+                    <TemplateThumbnail id={t.id} accent={t.accent} />
                     {isActive && (
                       <div className="rb-tmpl-switcher__check" aria-hidden="true">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">

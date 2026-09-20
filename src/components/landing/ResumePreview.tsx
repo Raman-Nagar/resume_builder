@@ -6,8 +6,10 @@ interface ResumePreviewProps {
 }
 
 export function ResumePreview({ variant = "classic", scale }: ResumePreviewProps) {
-  if (variant === "modern")  return <ModernResume  scale={scale} />;
-  if (variant === "minimal") return <MinimalResume scale={scale} />;
+  if (variant === "modern")    return <ModernResume    scale={scale} />;
+  if (variant === "minimal")   return <MinimalResume   scale={scale} />;
+  if (variant === "executive") return <ExecutiveResume scale={scale} />;
+  if (variant === "creative")  return <CreativeResume  scale={scale} />;
   return <ClassicResume scale={scale} />;
 }
 
@@ -164,6 +166,133 @@ function ModernResume({ scale }: { scale?: number }) {
           <div style={s.mSecTitle}>Education</div>
           <div style={s.role}>B.S. Computer Science</div>
           <div style={s.org}>University of Texas · 2015–2019</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Executive ──────────────────────────────────────────── */
+function ExecutiveResume({ scale }: { scale?: number }) {
+  const fs = (scale ?? 1) * 7.5;
+  const navy = "#1e3a5f";
+  const s = {
+    sheet:    { fontFamily: "'Georgia','Times New Roman',serif", fontSize: `${fs}px`, color: C.ink, lineHeight: 1.45, backgroundColor: C.white, width: "100%", boxSizing: "border-box" as const },
+    hero:     { backgroundColor: navy, color: C.white, padding: "2em 2.6em 1.6em" },
+    name:     { fontSize: "2em", fontWeight: 700, letterSpacing: "-0.02em", lineHeight: 1.1, marginBottom: "0.2em" },
+    title:    { fontSize: "0.88em", color: "#93c5fd", marginBottom: "0.7em", fontFamily: "sans-serif", letterSpacing: "0.04em" },
+    contact:  { display: "flex", flexWrap: "wrap" as const, gap: "0 0", fontSize: "0.72em", color: "#bfdbfe", fontFamily: "sans-serif" },
+    dot:      { margin: "0 0.6em", opacity: 0.5 },
+    body:     { padding: "1.8em 2.6em" },
+    secTitle: { fontSize: "0.64em", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" as const, color: navy, borderBottom: `2px solid ${navy}`, paddingBottom: "0.35em", marginBottom: "0.7em", fontFamily: "sans-serif" },
+    section:  { marginBottom: "1.2em" },
+    entry:    { marginBottom: "0.8em" },
+    row:      { display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "0.5em", marginBottom: "0.15em" },
+    role:     { fontSize: "0.9em", fontWeight: 700, color: C.ink, fontFamily: "sans-serif" },
+    org:      { fontSize: "0.8em", color: C.muted, fontFamily: "sans-serif", marginBottom: "0.15em" },
+    date:     { fontSize: "0.74em", color: C.muted, whiteSpace: "nowrap" as const, fontFamily: "sans-serif", flexShrink: 0 },
+    bodyText: { fontSize: "0.82em", lineHeight: 1.6, color: C.body },
+    bullets:  { margin: "0.3em 0 0", paddingLeft: "1.2em", fontSize: "0.81em", color: C.body, lineHeight: 1.6 },
+  };
+  return (
+    <div style={s.sheet}>
+      <div style={s.hero}>
+        <div style={s.name}>Margaret Holloway</div>
+        <div style={s.title}>Chief Operating Officer</div>
+        <div style={s.contact}>
+          <span>m.holloway@email.com</span><span style={s.dot}>·</span>
+          <span>+1 (212) 555-0174</span><span style={s.dot}>·</span>
+          <span>New York, NY</span><span style={s.dot}>·</span>
+          <span>linkedin.com/in/mholloway</span>
+        </div>
+      </div>
+      <div style={s.body}>
+        <div style={s.section}>
+          <div style={s.secTitle}>Executive Summary</div>
+          <div style={s.bodyText}>Operations executive with 15+ years leading cross-functional teams at Fortune 500 companies. Delivered $120M in cost savings through process transformation and strategic vendor consolidation.</div>
+        </div>
+        <div style={s.section}>
+          <div style={s.secTitle}>Experience</div>
+          <div style={s.entry}>
+            <div style={s.row}><div style={s.role}>Chief Operating Officer</div><div style={s.date}>2019 – Present</div></div>
+            <div style={s.org}>Apex Global Solutions · New York, NY</div>
+            <ul style={s.bullets}><li>Scaled operations from 400 to 1,200 employees across 8 countries</li><li>Reduced operational costs by 22% through supply chain restructuring</li></ul>
+          </div>
+          <div style={s.entry}>
+            <div style={s.row}><div style={s.role}>VP of Operations</div><div style={s.date}>2014 – 2019</div></div>
+            <div style={s.org}>Meridian Capital Group · Boston, MA</div>
+            <ul style={s.bullets}><li>Led $45M ERP implementation across 12 business units</li></ul>
+          </div>
+        </div>
+        <div style={s.section}>
+          <div style={s.secTitle}>Education</div>
+          <div style={s.row}><div style={s.role}>MBA, Harvard Business School</div><div style={s.date}>2006 – 2008</div></div>
+          <div style={s.row}><div style={{ fontSize: "0.82em", color: C.muted, fontFamily: "sans-serif" }}>B.S. Economics, Yale University</div><div style={s.date}>2002 – 2006</div></div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ─── Creative ────────────────────────────────────────────── */
+function CreativeResume({ scale }: { scale?: number }) {
+  const fs = (scale ?? 1) * 7.5;
+  const teal = "#0891b2";
+  const sidebar: React.CSSProperties = { width: "32%", backgroundColor: "#0c4a6e", padding: "2em 1.3em", flexShrink: 0, display: "flex", flexDirection: "column", boxSizing: "border-box" };
+  const main: React.CSSProperties = { flex: 1, padding: "2em 1.5em", boxSizing: "border-box", minWidth: 0 };
+  const s = {
+    sheet:     { fontFamily: "sans-serif", fontSize: `${fs}px`, color: C.ink, lineHeight: 1.45, display: "flex", backgroundColor: C.white, width: "100%", boxSizing: "border-box" as const },
+    avatar:    { width: "3.2em", height: "3.2em", borderRadius: "50%", backgroundColor: teal, color: C.white, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1.1em", fontWeight: 700, marginBottom: "0.9em", flexShrink: 0 } as React.CSSProperties,
+    sName:     { fontSize: "1.05em", fontWeight: 700, color: C.white, marginBottom: "0.15em" },
+    sRole:     { fontSize: "0.72em", color: "#7dd3fc", marginBottom: "1.3em" },
+    sLabel:    { fontSize: "0.6em", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" as const, color: teal, marginBottom: "0.5em", marginTop: "1.1em" },
+    sContact:  { fontSize: "0.7em", color: "#bae6fd", lineHeight: 1.8 },
+    chip:      { display: "inline-block", fontSize: "0.68em", backgroundColor: "rgba(8,145,178,0.25)", color: "#7dd3fc", padding: "0.2em 0.55em", borderRadius: "999px", margin: "0.15em 0.15em 0 0" },
+    mSecTitle: { fontSize: "0.7em", fontWeight: 700, letterSpacing: "0.09em", textTransform: "uppercase" as const, color: teal, marginBottom: "0.55em", paddingBottom: "0.3em", borderBottom: `1.5px solid ${teal}33` },
+    block:     { marginBottom: "1.1em" },
+    entry:     { marginBottom: "0.75em" },
+    row:       { display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "0.4em", marginBottom: "0.15em" },
+    role:      { fontSize: "0.86em", fontWeight: 700, color: C.ink },
+    org:       { fontSize: "0.76em", color: C.muted, marginTop: "0.08em" },
+    pill:      { fontSize: "0.68em", color: C.white, backgroundColor: teal, padding: "0.15em 0.55em", borderRadius: "999px", whiteSpace: "nowrap" as const, flexShrink: 0 },
+    body:      { fontSize: "0.81em", lineHeight: 1.6, color: C.body },
+    bullets:   { margin: "0.3em 0 0", paddingLeft: "1.1em", fontSize: "0.79em", color: C.body, lineHeight: 1.55 },
+  };
+  return (
+    <div style={s.sheet}>
+      <div style={sidebar}>
+        <div style={s.avatar}>SC</div>
+        <div style={s.sName}>Sofia Cruz</div>
+        <div style={s.sRole}>Brand & UX Designer</div>
+        <div style={s.sLabel}>Contact</div>
+        <div style={s.sContact}><div>sofia@email.com</div><div>+1 (305) 555-0162</div><div>Miami, FL</div><div>behance.net/sofiacruz</div></div>
+        <div style={s.sLabel}>Skills</div>
+        <div>{["Figma","Illustrator","After Effects","Webflow","Branding","Motion","Prototyping"].map(sk => <span key={sk} style={s.chip}>{sk}</span>)}</div>
+        <div style={s.sLabel}>Languages</div>
+        <div style={{ fontSize: "0.7em", color: "#bae6fd", lineHeight: 1.8 }}><div>English — Native</div><div>Spanish — Fluent</div></div>
+      </div>
+      <div style={main}>
+        <div style={s.block}>
+          <div style={s.mSecTitle}>About</div>
+          <div style={s.body}>Creative designer with 6 years building brand identities and digital experiences for agencies and startups. Passionate about motion design and design systems.</div>
+        </div>
+        <div style={s.block}>
+          <div style={s.mSecTitle}>Experience</div>
+          <div style={s.entry}>
+            <div style={s.row}><div style={s.role}>Senior Brand Designer</div><div style={s.pill}>2021–Present</div></div>
+            <div style={s.org}>Neon Studio · Miami, FL</div>
+            <ul style={s.bullets}><li>Led rebrands for 12 clients, avg. 40% uplift in brand recall</li><li>Built motion design system adopted across all client work</li></ul>
+          </div>
+          <div style={s.entry}>
+            <div style={s.row}><div style={s.role}>UX Designer</div><div style={s.pill}>2018–2021</div></div>
+            <div style={s.org}>Pixel & Co. · New York, NY</div>
+            <ul style={s.bullets}><li>Designed end-to-end flows for 3 mobile app launches</li></ul>
+          </div>
+        </div>
+        <div style={s.block}>
+          <div style={s.mSecTitle}>Education</div>
+          <div style={s.role}>B.F.A. Graphic Design</div>
+          <div style={s.org}>Parsons School of Design · 2014–2018</div>
         </div>
       </div>
     </div>

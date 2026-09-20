@@ -50,17 +50,17 @@ export function TemplatesSection() {
 
         <div className="lp-templates-grid">
           {TEMPLATES.map((t) => (
-            <div key={t.id} className="lp-template-card">
+            <Link key={t.id} href={`/builder?template=${t.id}`} className="lp-template-card">
               <div className="lp-template-preview">
                 <div className="lp-template-preview__scaler">
-                  <ResumePreview variant={t.variant} />
+                  <ResumePreview variant={t.variant} scale={1.5} />
                 </div>
               </div>
               <div className="lp-template-info">
                 <div className="lp-template-name">{t.name}</div>
                 <div className="lp-template-desc">{t.description}</div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
