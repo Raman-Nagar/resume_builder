@@ -13,7 +13,7 @@ export default function TermsPage() {
     <main className="prose-page">
       <Link href="/">← Back to Resume Builder</Link>
       <h1>Terms of Use</h1>
-      <p className="prose-page__meta">Last updated: January 2025</p>
+      <p className="prose-page__meta">Last updated: June 2025</p>
 
       <h2>1. Acceptance</h2>
       <p>By using resumebuilder.ramannagar.in you agree to these terms. If you do not agree, please stop using the service.</p>
@@ -30,17 +30,23 @@ export default function TermsPage() {
       <h2>5. Intellectual Property</h2>
       <p>The Resume Builder application, templates, and design are owned by Raman Nagar. You may not copy or redistribute the application itself. Resumes you create are entirely your own.</p>
 
-      <h2>6. Disclaimer of Warranties</h2>
+      <h2>6. Third-Party Services</h2>
+      <p>This site uses third-party services including Google Analytics, Microsoft Clarity, and Google AdSense. Your use of this site is also subject to the terms and privacy policies of these services. We are not responsible for the practices of any third-party service providers.</p>
+
+      <h2>7. Disclaimer of Warranties</h2>
       <p>The service is provided &quot;as is&quot; without warranties of any kind. We do not guarantee the service will be uninterrupted, error-free, or suitable for any particular purpose.</p>
 
-      <h2>7. Limitation of Liability</h2>
+      <h2>8. Limitation of Liability</h2>
       <p>To the fullest extent permitted by law, Raman Nagar shall not be liable for any indirect, incidental, or consequential damages arising from your use of the service.</p>
 
-      <h2>8. Changes to Terms</h2>
+      <h2>9. Governing Law</h2>
+      <p>These terms are governed by the laws of India. Any disputes arising from the use of this service shall be subject to the exclusive jurisdiction of the courts of India.</p>
+
+      <h2>10. Changes to Terms</h2>
       <p>We may update these terms at any time. Continued use of the service after changes constitutes acceptance of the new terms.</p>
 
-      <h2>9. Contact</h2>
-      <p>Questions? Reach out at <a href="https://ramannagar.in">ramannagar.in</a>.</p>
+      <h2>11. Contact</h2>
+      <p>Questions? Email us at <a href="mailto:ramannagar08082000@gmail.com">ramannagar08082000@gmail.com</a>.</p>
 
       <hr className="prose-page__divider" />
       <Link href="/privacy">Privacy Policy</Link>
