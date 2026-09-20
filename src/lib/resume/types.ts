@@ -1,7 +1,7 @@
 // ─── Primitive helpers ────────────────────────────────────────────────────────
 
 export type ISODateString = string; // "YYYY-MM-DD" or "YYYY-MM"
-export type TemplateId = "classic" | "modern" | "minimal";
+export type TemplateId = "classic" | "modern" | "minimal" | "executive" | "creative";
 export type SectionKey =
   | "summary"
   | "experience"

@@ -10,42 +10,38 @@ export function usePrint() {
     const paper  = scaler.querySelector<HTMLElement>(".rp-paper");
     const spacer = scaler.nextElementSibling as HTMLElement | null;
 
-    // Read the top/bottom padding the template applies to its root div.
-    // For single-column templates (Classic, Minimal) this is on firstElementChild.
-    // For Modern (flex sidebar+main), padding is on the sidebar/main children,
-    // so we walk into the first deeply-padded descendant.
+    // Read the template's top/bottom padding so @page margin can match it.
+    // This makes every page (including page 2+) have consistent top/bottom spacing.
+    // For single-column templates the padding is on firstElementChild.
+    // For two-column templates (data-print-two-col) padding is on the sidebar child.
     const templateRoot = paper?.firstElementChild as HTMLElement | null;
-    const getTopPadding = (el: HTMLElement | null): number => {
-      if (!el) return 0;
-      const v = parseFloat(getComputedStyle(el).paddingTop) || 0;
-      if (v > 0) return v;
-      // Try first child (Modern: sidebar is first child of flex wrapper)
-      const child = el.firstElementChild as HTMLElement | null;
-      return child ? parseFloat(getComputedStyle(child).paddingTop) || 0 : 0;
-    };
-    const getBottomPadding = (el: HTMLElement | null): number => {
-      if (!el) return 0;
-      const v = parseFloat(getComputedStyle(el).paddingBottom) || 0;
-      if (v > 0) return v;
-      const child = el.firstElementChild as HTMLElement | null;
-      return child ? parseFloat(getComputedStyle(child).paddingBottom) || 0 : 0;
-    };
-    const computedPaddingTop    = getTopPadding(templateRoot);
-    const computedPaddingBottom = getBottomPadding(templateRoot);
+    const isTwoCol = templateRoot?.hasAttribute("data-print-two-col") ?? false;
 
-    // Convert px (96dpi screen) → mm for accurate @page margins at printer DPI
-    const pxToMm = (px: number) => `${(px / 3.7795).toFixed(2)}mm`;
+    const getPadding = (side: "paddingTop" | "paddingBottom"): number => {
+      if (!templateRoot) return 0;
+      if (isTwoCol) {
+        // sidebar is first child of the flex wrapper
+        const sidebar = templateRoot.firstElementChild as HTMLElement | null;
+        return parseFloat(getComputedStyle(sidebar ?? templateRoot)[side]) || 0;
+      }
+      return parseFloat(getComputedStyle(templateRoot)[side]) || 0;
+    };
 
-    // Inject print styles:
-    // - @page margin-top/bottom = template's padding → consistent spacing on every page
-    // - Named margin boxes with empty content → suppresses browser headers/footers
-    // - .rp-paper > * padding zeroed → prevents double-spacing on page 1
+    const padTop    = getPadding("paddingTop");
+    const padBottom = getPadding("paddingBottom");
+    const pxToMm    = (px: number) => `${(px / 3.7795).toFixed(2)}mm`;
+
+    // Inject @page rule:
+    // - top/bottom = template padding → consistent spacing on every page
+    // - left/right = 0 → template controls horizontal spacing via its own padding
+    // - named margin boxes empty → suppress browser headers/footers
+    // Also zero the template root's top/bottom padding on page 1 to avoid
+    // double-spacing (the @page margin already provides that gap).
     const styleEl = document.createElement("style");
     styleEl.id = "rp-print-page-margins";
     styleEl.textContent = `
       @page {
-        margin-top: ${pxToMm(computedPaddingTop)};
-        margin-bottom: ${pxToMm(computedPaddingBottom)};
+        margin: ${pxToMm(padTop)} 0 ${pxToMm(padBottom)} 0;
         @top-left    { content: ""; }
         @top-center  { content: ""; }
         @top-right   { content: ""; }
@@ -54,11 +50,15 @@ export function usePrint() {
         @bottom-right   { content: ""; }
       }
       @media print {
-        /* Zero top/bottom padding on the template root to avoid double-spacing
-           on page 1 (the @page margin already provides that spacing).
-           Only applies when the root itself carries the padding (Classic/Minimal).
-           Modern's padding lives on sidebar/main children, not the flex wrapper. */
-        .rp-paper > *[style*="padding"] { padding-top: 0 !important; padding-bottom: 0 !important; }
+        /* Remove top/bottom padding from the template root on page 1 only —
+           @page margin already provides that spacing on every page.
+           Single-column: padding is on the root child div.
+           Two-column: padding is on sidebar + main children — leave those alone
+           since they don't cause double-spacing (flex children, not block flow). */
+        .rp-paper > *:not([data-print-two-col]) {
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+        }
       }
     `;
     document.head.appendChild(styleEl);
@@ -82,15 +82,14 @@ export function usePrint() {
       window.removeEventListener("afterprint", restore);
     };
 
-    // Mutate before browser snapshots the page
+    // Reset scaler so the paper fills the full page width at 1:1 scale
     scaler.style.position  = "static";
     scaler.style.width     = "100%";
     scaler.style.transform = "none";
     scaler.style.left      = "";
     if (paper)  paper.style.width    = "100%";
-    if (spacer) spacer.style.display = "none";   // hides the height-spacer div → no blank 3rd page
+    if (spacer) spacer.style.display = "none";
 
-    // Fallback for iOS/Safari where afterprint may not fire on cancel
     const fallbackTimer = setTimeout(restore, 3000);
     window.addEventListener("afterprint", () => { clearTimeout(fallbackTimer); restore(); }, { once: true });
     try {

@@ -5,7 +5,7 @@
 resumebuilder.ramannagar.in is a free, privacy-first resume builder built for job seekers.
 - No sign-up or account required
 - Resume data stored only in the browser (localStorage) — never sent to any server
-- ATS-friendly templates: Classic, Modern, Minimal
+- ATS-friendly templates: Classic, Modern, Minimal, Executive, Creative
 - One-click PDF export
 - Built by Raman Nagar (https://ramannagar.in)
 
@@ -14,15 +14,20 @@ resumebuilder.ramannagar.in is a free, privacy-first resume builder built for jo
 - /builder: Resume editor — the main app
 - /templates: All resume templates index
 - /templates/classic-resume-template: Classic single-column resume template
-- /templates/modern-resume-template: Modern two-column resume template
+- /templates/modern-resume-template: Modern two-column resume template with sidebar
 - /templates/minimal-resume-template: Minimal typography-first resume template
+- /templates/executive-resume-template: Executive resume template with bold colored header
+- /templates/creative-resume-template: Creative resume template with colorful sidebar and skill chips
 - /blog: Resume tips and career advice articles
 - /blog/how-to-write-a-resume: Step-by-step guide to writing a resume in 2025
 - /blog/ats-resume-tips: 10 tips to make a resume pass ATS systems
 - /blog/best-resume-format-2025: Comparison of resume formats in 2025
 - /blog/resume-summary-examples: 20 resume summary examples for every industry
 - /blog/resume-skills-section: How to write a resume skills section with examples
+- /blog/resume-action-verbs: 185 resume action verbs organised by category
+- /blog/resume-objective-examples: 20 resume objective examples for any job or experience level
 - /blog/how-to-write-a-cover-letter: How to write a cover letter in 2025 with examples
+- /blog/how-to-list-education-on-a-resume: How to list education on a resume with examples
 - /privacy: Privacy policy
 - /terms: Terms of use
 
@@ -31,5 +36,5 @@ resumebuilder.ramannagar.in is a free, privacy-first resume builder built for jo
 - Account required: No
 - Data privacy: All data stays in the user's browser
 - Supported output: PDF
-- Templates: Classic, Modern, Minimal
+- Templates: Classic, Modern, Minimal, Executive, Creative
 - ATS compatible: Yes

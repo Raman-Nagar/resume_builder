@@ -12,9 +12,11 @@ import { SectionShell } from "./SectionShell";
 // ─── Option tables ────────────────────────────────────────────────────────────
 
 const TEMPLATES: Array<{ id: TemplateId; label: string; desc: string }> = [
-  { id: "classic", label: "Classic", desc: "Traditional · ATS-safe" },
-  { id: "modern",  label: "Modern",  desc: "Two-column · Sidebar" },
-  { id: "minimal", label: "Minimal", desc: "Editorial · Whitespace" },
+  { id: "classic",   label: "Classic",   desc: "Traditional · ATS-safe" },
+  { id: "modern",    label: "Modern",    desc: "Two-column · Sidebar" },
+  { id: "minimal",   label: "Minimal",   desc: "Editorial · Whitespace" },
+  { id: "executive", label: "Executive", desc: "Bold header · Formal" },
+  { id: "creative",  label: "Creative",  desc: "Colorful · Sidebar chips" },
 ];
 
 const ACCENT_PRESETS: Array<{ value: AccentColor; hex: string; label: string }> = [
@@ -96,9 +98,11 @@ export function DesignSection() {
               aria-pressed={design.template === t.id}
             >
               <div className="rb-template-option__thumb" aria-hidden="true">
-                {t.id === "classic" && <ClassicThumb accent={design.accentColor} />}
-                {t.id === "modern"  && <ModernThumb  accent={design.accentColor} />}
-                {t.id === "minimal" && <MinimalThumb accent={design.accentColor} />}
+                {t.id === "classic"   && <ClassicThumb   accent={design.accentColor} />}
+                {t.id === "modern"    && <ModernThumb    accent={design.accentColor} />}
+                {t.id === "minimal"   && <MinimalThumb   accent={design.accentColor} />}
+                {t.id === "executive" && <ExecutiveThumb accent={design.accentColor} />}
+                {t.id === "creative"  && <CreativeThumb  accent={design.accentColor} />}
               </div>
               <div className="rb-template-option__name">{t.label}</div>
               <div className="rb-template-option__desc">{t.desc}</div>
@@ -361,6 +365,66 @@ function MinimalThumb({ accent }: { accent: string }) {
       <rect x="8" y="71" width="64" height="0.75" fill="#d4d4d4"/>
       <rect x="8" y="75" width="10" height="1.5" rx="0.5" fill={a}/>
       <rect x="26" y="75" width="44" height="1.5" rx="0.5" fill="#888"/>
+    </svg>
+  );
+}
+
+function ExecutiveThumb({ accent }: { accent: string }) {
+  const a = THUMB_ACCENT[accent] ?? THUMB_ACCENT.navy;
+  return (
+    <svg viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="80" height="100" fill="#fafafa"/>
+      <rect width="80" height="26" fill={a}/>
+      <rect x="8" y="7" width="38" height="5" rx="1" fill="white" fillOpacity="0.95"/>
+      <rect x="8" y="15" width="24" height="2" rx="0.5" fill="white" fillOpacity="0.65"/>
+      <rect x="8" y="20" width="48" height="1.5" rx="0.5" fill="white" fillOpacity="0.45"/>
+      <rect x="8" y="32" width="3" height="8" rx="1" fill={a}/>
+      <rect x="14" y="33" width="16" height="2" rx="0.5" fill="#111"/>
+      <rect x="14" y="37" width="52" height="0.5" fill="#e2e8f0"/>
+      <rect x="8" y="43" width="30" height="2" rx="0.5" fill="#222"/>
+      <rect x="8" y="47" width="20" height="1.5" rx="0.5" fill={a} fillOpacity="0.8"/>
+      <rect x="10" y="51" width="50" height="1.5" rx="0.5" fill="#ccc"/>
+      <rect x="10" y="54" width="44" height="1.5" rx="0.5" fill="#ccc"/>
+      <rect x="8" y="61" width="3" height="8" rx="1" fill={a}/>
+      <rect x="14" y="62" width="18" height="2" rx="0.5" fill="#111"/>
+      <rect x="14" y="66" width="52" height="0.5" fill="#e2e8f0"/>
+      <rect x="8" y="72" width="26" height="2" rx="0.5" fill="#222"/>
+      <rect x="8" y="76" width="18" height="1.5" rx="0.5" fill={a} fillOpacity="0.8"/>
+      <rect x="10" y="80" width="46" height="1.5" rx="0.5" fill="#ccc"/>
+    </svg>
+  );
+}
+
+function CreativeThumb({ accent }: { accent: string }) {
+  const a = THUMB_ACCENT[accent] ?? THUMB_ACCENT.navy;
+  return (
+    <svg viewBox="0 0 80 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <rect width="80" height="100" fill="#fafafa"/>
+      <rect width="25" height="100" fill={a}/>
+      <circle cx="12.5" cy="13" r="5.5" fill="white" fillOpacity="0.25"/>
+      <rect x="3" y="22" width="19" height="2.5" rx="0.5" fill="white" fillOpacity="0.9"/>
+      <rect x="3" y="26" width="14" height="1.5" rx="0.5" fill="white" fillOpacity="0.55"/>
+      <rect x="3" y="34" width="10" height="1.5" rx="0.5" fill="white" fillOpacity="0.4"/>
+      <rect x="3" y="38" width="8" height="3" rx="1.5" fill="white" fillOpacity="0.2"/>
+      <rect x="13" y="38" width="9" height="3" rx="1.5" fill="white" fillOpacity="0.2"/>
+      <rect x="3" y="43" width="11" height="3" rx="1.5" fill="white" fillOpacity="0.2"/>
+      <rect x="3" y="50" width="10" height="1.5" rx="0.5" fill="white" fillOpacity="0.4"/>
+      <rect x="3" y="54" width="19" height="1.5" rx="0.5" fill="white" fillOpacity="0.55"/>
+      <rect x="3" y="57" width="15" height="1.5" rx="0.5" fill="white" fillOpacity="0.55"/>
+      <rect x="29" y="8" width="3" height="1.5" rx="0.5" fill={a} fillOpacity="0.3"/>
+      <rect x="29" y="10" width="43" height="1.5" rx="0.5" fill={a} fillOpacity="0.15"/>
+      <rect x="29" y="15" width="16" height="2" rx="0.5" fill={a}/>
+      <rect x="29" y="19" width="26" height="2" rx="0.5" fill="#111"/>
+      <rect x="29" y="23" width="18" height="1.5" rx="0.5" fill={a} fillOpacity="0.7"/>
+      <rect x="55" y="19" width="16" height="3.5" rx="1.75" fill={a}/>
+      <rect x="29" y="28" width="38" height="1.5" rx="0.5" fill="#ccc"/>
+      <rect x="29" y="31" width="32" height="1.5" rx="0.5" fill="#ccc"/>
+      <rect x="29" y="38" width="16" height="2" rx="0.5" fill={a}/>
+      <rect x="29" y="42" width="22" height="2" rx="0.5" fill="#111"/>
+      <rect x="29" y="46" width="16" height="1.5" rx="0.5" fill={a} fillOpacity="0.7"/>
+      <rect x="55" y="42" width="16" height="3.5" rx="1.75" fill={a}/>
+      <rect x="29" y="51" width="36" height="1.5" rx="0.5" fill="#ccc"/>
+      <rect x="29" y="54" width="30" height="1.5" rx="0.5" fill="#ccc"/>
     </svg>
   );
 }

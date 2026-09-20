@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export function Navbar() {
   return (
@@ -17,6 +18,7 @@ export function Navbar() {
         </nav>
 
         <div className="lp-navbar__actions">
+          <ThemeToggle />
           <Link href="/choose-template" className="btn btn-primary btn-sm">
             Create Resume
           </Link>

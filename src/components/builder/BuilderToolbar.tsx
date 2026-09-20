@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ResumePreview } from "@/components/landing/ResumePreview";
+import { ResumeScoreBadge } from "./ResumeScore";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import type { SaveStatus } from "@/hooks/useAutosave";
 import type { TemplateId } from "@/lib/resume/types";
 
@@ -61,6 +63,12 @@ export function BuilderToolbar({
       <div className="rb-toolbar__actions">
         {/* Template switcher */}
         <TemplateSwitcher current={currentTemplate} onChange={onTemplateChange} />
+
+        {/* Resume score */}
+        <ResumeScoreBadge />
+
+        {/* Dark mode toggle */}
+        <ThemeToggle />
 
         {/* Undo / Redo */}
         <div className="rb-toolbar__action-group" role="group" aria-label="History">
@@ -142,9 +150,11 @@ export function BuilderToolbar({
 // ─── Template switcher ───────────────────────────────────────────────────────
 
 const TEMPLATES: { id: TemplateId; label: string; tag: string; accent: string }[] = [
-  { id: "classic", label: "Classic", tag: "Most popular", accent: "#2563eb" },
-  { id: "modern",  label: "Modern",  tag: "Great for tech", accent: "#7c3aed" },
-  { id: "minimal", label: "Minimal", tag: "Clean & elegant", accent: "#0f172a" },
+  { id: "classic",   label: "Classic",   tag: "Most popular",    accent: "#2563eb" },
+  { id: "modern",    label: "Modern",    tag: "Great for tech",   accent: "#7c3aed" },
+  { id: "minimal",   label: "Minimal",   tag: "Clean & elegant",  accent: "#0f172a" },
+  { id: "executive", label: "Executive", tag: "Senior roles",     accent: "#1e3a5f" },
+  { id: "creative",  label: "Creative",  tag: "Stand out",        accent: "#0891b2" },
 ];
 
 function TemplateSwitcher({ current, onChange }: { current: TemplateId; onChange: (t: TemplateId) => void }) {

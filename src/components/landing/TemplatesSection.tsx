@@ -20,6 +20,18 @@ const TEMPLATES = [
     description: "Clean typography-first layout. Ideal for creative fields.",
     variant: "minimal" as const,
   },
+  {
+    id: "executive",
+    name: "Executive",
+    description: "Bold colored header band. Built for senior professionals.",
+    variant: "executive" as const,
+  },
+  {
+    id: "creative",
+    name: "Creative",
+    description: "Vibrant sidebar with skill chips. Stand out from the crowd.",
+    variant: "creative" as const,
+  },
 ];
 
 export function TemplatesSection() {
@@ -29,7 +41,7 @@ export function TemplatesSection() {
         <div className="lp-section-header">
           <p className="lp-overline">Templates</p>
           <h2 id="templates-heading" className="lp-section-title">
-            Three premium designs.<br className="lp-br-md" /> All ATS-friendly.
+            Five premium designs.<br className="lp-br-md" /> All ATS-friendly.
           </h2>
           <p className="lp-section-subtitle">
             Every template is crafted to look great on screen and print perfectly as a PDF.

@@ -5,15 +5,19 @@ import type { TemplateId, TemplateComponent } from "./TemplateProps";
 import { ClassicTemplate } from "./ClassicTemplate";
 import { ModernTemplate } from "./ModernTemplate";
 import { MinimalTemplate } from "./MinimalTemplate";
+import { ExecutiveTemplate } from "./ExecutiveTemplate";
+import { CreativeTemplate } from "./CreativeTemplate";
 import { ErrorBoundary } from "@/components/ui/ErrorBoundary";
 
 // ─── Template registry ────────────────────────────────────────────────────────
 // To add a new template: import it and add an entry here. Nothing else changes.
 
 const TEMPLATE_REGISTRY: Record<TemplateId, TemplateComponent> = {
-  classic: ClassicTemplate,
-  modern:  ModernTemplate,
-  minimal: MinimalTemplate,
+  classic:   ClassicTemplate,
+  modern:    ModernTemplate,
+  minimal:   MinimalTemplate,
+  executive: ExecutiveTemplate,
+  creative:  CreativeTemplate,
 };
 
 const FALLBACK: TemplateComponent = ClassicTemplate;

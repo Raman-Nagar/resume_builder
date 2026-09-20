@@ -1,4 +1,4 @@
-type ResumeVariant = "classic" | "modern" | "minimal";
+type ResumeVariant = "classic" | "modern" | "minimal" | "executive" | "creative";
 
 interface ResumePreviewProps {
   variant?: ResumeVariant;
