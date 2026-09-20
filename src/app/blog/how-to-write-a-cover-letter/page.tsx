@@ -22,13 +22,21 @@ export default function HowToWriteCoverLetterPage() {
         </nav>
 
         <h1>How to Write a Cover Letter in 2025</h1>
-        <p className="prose-page__meta">Updated January 2025 · 8 min read</p>
+        <p className="prose-page__meta">Updated June 2025 · 10 min read</p>
         <p className="prose-page__lead">A strong cover letter can be the difference between getting an interview and being ignored. In 2025, most candidates submit generic letters. A specific, well-structured cover letter immediately stands out.</p>
 
         <h2>Do you still need a cover letter in 2025?</h2>
-        <p>Yes — when one is requested or when applying directly to a company. A tailored cover letter increases your chances of getting an interview. The key word is <strong>tailored</strong>. A generic letter is worse than no letter at all because it signals low effort.</p>
+        <p>Yes — when one is requested or when applying directly to a company. Research consistently shows that a tailored cover letter increases interview rates. The key word is <strong>tailored</strong>. A generic letter copied from a template is worse than no letter at all because it signals low effort and poor attention to detail.</p>
+        <p>When cover letters are optional, include one anyway. It is an opportunity your competition may skip.</p>
 
-        <h2>Cover letter structure</h2>
+        <h2>Cover letter format and length</h2>
+        <ul>
+          <li><strong>Length:</strong> 3–4 short paragraphs, no more than one page</li>
+          <li><strong>Font:</strong> Same font as your resume — Arial, Calibri, or Georgia at 10–12pt</li>
+          <li><strong>Format:</strong> Plain text or simple formatting — no graphics, no tables</li>
+          <li><strong>File:</strong> PDF, named FirstName-LastName-CoverLetter.pdf</li>
+          <li><strong>Salutation:</strong> &quot;Dear [Hiring Manager&apos;s Name]&quot; if you know it; &quot;Dear Hiring Manager&quot; if you do not. Never &quot;To Whom It May Concern&quot;.</li>
+        </ul>
         <p>A cover letter should have four parts:</p>
         <ol>
           <li><strong>Opening paragraph</strong> — who you are, what role you are applying for, and one compelling reason why you are a strong fit</li>
@@ -65,6 +73,37 @@ export default function HowToWriteCoverLetterPage() {
 
         <h3>Employment gap</h3>
         <p>Address it briefly and confidently — one sentence is enough. State it plainly and pivot immediately to what you bring now. Do not over-explain or apologise.</p>
+
+        <h2>Cover letter example — Marketing Manager</h2>
+        <div className="prose-example prose-example--quote">
+          <p>Dear Sarah Johnson,</p>
+          <p>I am applying for the Marketing Manager role at Bloom Digital. With 6 years of experience growing B2B SaaS brands through content and paid acquisition, I have a track record that maps directly to what you are looking for — I grew organic traffic by 180% at my current company and managed a £400K annual paid media budget.</p>
+          <p>At TechFlow, I built the content marketing function from scratch, growing the blog from zero to 80K monthly visitors in 18 months. I also led a rebrand that increased inbound lead quality by 35%, measured by SQL conversion rate. I am comfortable owning both strategy and execution.</p>
+          <p>I have followed Bloom Digital&apos;s work for two years — particularly your approach to product-led growth content. The way your team uses the product itself as a distribution channel is something I have been experimenting with and would love to develop further in this role.</p>
+          <p>I would welcome the chance to discuss how I can contribute. I am available for a call any time this week. Thank you for your consideration.</p>
+        </div>
+
+        <h2>How to open a cover letter (without &quot;I am writing to apply for...&quot;)</h2>
+        <p>The opening sentence is the most important. Most candidates start with &quot;I am writing to apply for the position of...&quot; — which is the most boring possible opening. Try one of these approaches instead:</p>
+        <ul>
+          <li><strong>Lead with a specific achievement:</strong> &quot;In my last role, I grew organic traffic by 180% in 12 months — and I believe I can do the same for [Company].&quot;</li>
+          <li><strong>Lead with a connection to the company:</strong> &quot;I have used [Product] for two years and have a clear view of where the onboarding experience could be stronger — which is exactly what drew me to this UX role.&quot;</li>
+          <li><strong>Lead with the role and your strongest credential:</strong> &quot;As a PMP-certified project manager with 8 years delivering complex infrastructure projects, I was immediately drawn to the Senior PM role at [Company].&quot;</li>
+        </ul>
+
+        <h2>Cover letter checklist</h2>
+        <ul>
+          <li>☐ Addressed to a specific person where possible</li>
+          <li>☐ Opening sentence is specific — not &quot;I am writing to apply for...&quot;</li>
+          <li>☐ Mentions the specific company name and role</li>
+          <li>☐ Includes at least one quantified achievement</li>
+          <li>☐ Shows genuine knowledge of the company</li>
+          <li>☐ Does not repeat the resume word for word</li>
+          <li>☐ 3–4 paragraphs, one page maximum</li>
+          <li>☐ Ends with a clear call to action</li>
+          <li>☐ Proofread — no typos, no wrong company name</li>
+          <li>☐ Saved as PDF, named correctly</li>
+        </ul>
 
         <div className="prose-page__cta-box">
           <p>Build the resume to go with your cover letter</p>

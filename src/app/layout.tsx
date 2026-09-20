@@ -67,20 +67,47 @@ export const metadata: Metadata = {
   },
 };
 
+const SITE_URL = "https://resumebuilder.ramannagar.in";
+const BUILD_DATE = new Date().toISOString().split("T")[0]; // YYYY-MM-DD, refreshed on each deploy
+
 const jsonLdWebSite = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "Resume Builder",
-  url: BASE_URL,
+  url: SITE_URL,
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${SITE_URL}/blog?q={search_term_string}`,
+    "query-input": "required name=search_term_string",
+  },
 };
 
-// JSON-LD structured data for SoftwareApplication
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "Resume Builder",
+  alternateName: ["Free Resume Builder", "Online Resume Maker", "ATS Resume Builder"],
   applicationCategory: "BusinessApplication",
+  applicationSubCategory: "ResumeBuilder",
   operatingSystem: "Web",
+  url: SITE_URL,
+  downloadUrl: `${SITE_URL}/builder`,
+  softwareVersion: "2.0",
+  dateModified: BUILD_DATE,
+  description:
+    "Free online resume builder with ATS-friendly templates. Create, customize, and download a professional resume as PDF — no account required.",
+  featureList: [
+    "ATS-friendly resume templates",
+    "Live preview",
+    "One-click PDF download",
+    "Import from JSON or PDF",
+    "No account required",
+    "Privacy-first — data stays in browser",
+    "Classic, Modern, Minimal, Executive, and Creative templates",
+    "Custom accent colors and fonts",
+    "Undo / redo history",
+  ],
+  screenshot: `${SITE_URL}/og-image.png`,
   offers: {
     "@type": "Offer",
     price: "0",
@@ -93,9 +120,11 @@ const jsonLd = {
     bestRating: "5",
     worstRating: "1",
   },
-  description:
-    "Free online resume builder with ATS-friendly templates. Create, customize, and download a professional resume as PDF — no account required.",
-  url: BASE_URL,
+  author: {
+    "@type": "Person",
+    name: "Raman Nagar",
+    url: "https://ramannagar.in",
+  },
 };
 
 export default function RootLayout({

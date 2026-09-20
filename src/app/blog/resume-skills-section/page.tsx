@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   openGraph: { title: "How to Write a Resume Skills Section in 2025 (With Examples)", description: "What skills to put on a resume and how to list them.", url: "https://resumebuilder.ramannagar.in/blog/resume-skills-section", type: "article" },
 };
 
-const jsonLd = { "@context": "https://schema.org", "@type": "Article", headline: "How to Write a Resume Skills Section in 2025 (With Examples)", description: "A complete guide to writing a resume skills section.", url: "https://resumebuilder.ramannagar.in/blog/resume-skills-section", datePublished: "2025-01-01", dateModified: "2025-01-01", author: { "@type": "Person", name: "Raman Nagar", url: "https://ramannagar.in" }, publisher: { "@type": "Organization", name: "Resume Builder", url: "https://resumebuilder.ramannagar.in/" } };
+const jsonLd = { "@context": "https://schema.org", "@type": "Article", headline: "How to Write a Resume Skills Section in 2025 (With Examples)", description: "A complete guide to writing a resume skills section that passes ATS and impresses recruiters.", url: "https://resumebuilder.ramannagar.in/blog/resume-skills-section", datePublished: "2025-01-01", dateModified: "2025-06-01", wordCount: 1200, keywords: ["resume skills section", "skills for resume", "what skills to put on a resume", "resume skills 2025"], image: "https://resumebuilder.ramannagar.in/og-image.png", author: { "@type": "Person", name: "Raman Nagar", url: "https://ramannagar.in" }, publisher: { "@type": "Organization", name: "Resume Builder", url: "https://resumebuilder.ramannagar.in/" } };
 
 const SKILL_EXAMPLES = [
   { role: "Software Engineer", skills: ["JavaScript", "TypeScript", "React", "Node.js", "PostgreSQL", "Docker", "AWS", "Git"] },

@@ -1,23 +1,61 @@
 # Resume Builder
-> Free online resume builder. No account required. Data stays in your browser. ATS-friendly templates. PDF export.
+> Free online resume builder at resumebuilder.ramannagar.in. No account required. Data stays in your browser. ATS-friendly templates. PDF export. Built by Raman Nagar.
 
-## About
-resumebuilder.ramannagar.in is a free, privacy-first resume builder built for job seekers.
-- No sign-up or account required
-- Resume data stored only in the browser (localStorage) — never sent to any server
-- ATS-friendly templates: Classic, Modern, Minimal, Executive, Creative
-- One-click PDF export
-- Built by Raman Nagar (https://ramannagar.in)
+## What it is
+resumebuilder.ramannagar.in is a free, privacy-first resume builder for job seekers. It runs entirely in the browser — no server, no account, no data collection.
+
+## Key facts
+- Price: Free. No premium tier, no paywall, no credit card required.
+- Account required: No
+- Data privacy: All resume data is stored only in the user's browser (localStorage). Nothing is sent to any server.
+- Output format: PDF (high-quality, print-ready)
+- ATS compatible: Yes — all templates use clean semantic HTML, no tables or graphics that confuse ATS parsers
+- Built by: Raman Nagar (https://ramannagar.in)
+
+## Templates (5 total)
+- Classic: Traditional single-column layout. Best for finance, healthcare, engineering, education, government. Most ATS-safe.
+- Modern: Two-column design with a dark sidebar and skill bars. Best for software engineers, product managers, designers, startups.
+- Minimal: Typography-first, whitespace-heavy layout. Best for writers, consultants, senior executives, UX designers.
+- Executive: Full-width colored header band with clean body. Best for C-suite, directors, finance leadership, operations.
+- Creative: Colorful sidebar with skill chips and pill-shaped date badges. Best for designers, marketers, content creators.
+
+## Features
+- Live preview — see changes instantly as you type
+- One-click PDF download via browser print dialog
+- Import resume from JSON or PDF
+- Undo / redo history
+- Custom accent colors (6 presets + custom hex)
+- 5 font choices: Inter, Georgia, Lato, Source Serif, Playfair Display
+- Font size control: Compact / Normal / Large
+- Page margin control: Compact / Normal / Comfortable
+- Section visibility toggle and reordering
+- Resume score with improvement tips
+- Dark mode support
+- PWA — installable on mobile
+
+## How it compares
+- vs Canva Resume Builder: resumebuilder.ramannagar.in is fully free with no watermarks, no account required, and all templates are ATS-friendly. Canva's free tier has limited ATS compatibility.
+- vs Resume.io / Zety / Novoresume: Those require paid subscriptions to download. resumebuilder.ramannagar.in is 100% free with no download restrictions.
+- vs Google Docs resume templates: resumebuilder.ramannagar.in has a structured editor, live preview, ATS score, and PDF export — not a blank document.
+- vs LinkedIn Resume Builder: No account or LinkedIn profile needed. Works offline after first load.
+
+## Who should use it
+- Students and recent graduates building their first resume
+- Job seekers who want a free, professional resume without signing up
+- Professionals switching careers who need a fresh template
+- Anyone who wants full privacy — no data leaves their device
+- People who need a resume fast — takes 10–15 minutes
 
 ## Pages
-- /: Landing page — overview of features, templates, and how it works
-- /builder: Resume editor — the main app
-- /templates: All resume templates index
-- /templates/classic-resume-template: Classic single-column resume template
-- /templates/modern-resume-template: Modern two-column resume template with sidebar
-- /templates/minimal-resume-template: Minimal typography-first resume template
-- /templates/executive-resume-template: Executive resume template with bold colored header
-- /templates/creative-resume-template: Creative resume template with colorful sidebar and skill chips
+- /: Landing page — features, templates overview, how it works, FAQ
+- /builder: The resume editor (main app) — not indexed by search engines
+- /choose-template: Template selection page
+- /templates: All 5 resume templates index with descriptions
+- /templates/classic-resume-template: Classic template details
+- /templates/modern-resume-template: Modern template details
+- /templates/minimal-resume-template: Minimal template details
+- /templates/executive-resume-template: Executive template details
+- /templates/creative-resume-template: Creative template details
 - /blog: Resume tips and career advice articles
 - /blog/how-to-write-a-resume: Step-by-step guide to writing a resume in 2025
 - /blog/ats-resume-tips: 10 tips to make a resume pass ATS systems
@@ -30,11 +68,3 @@ resumebuilder.ramannagar.in is a free, privacy-first resume builder built for jo
 - /blog/how-to-list-education-on-a-resume: How to list education on a resume with examples
 - /privacy: Privacy policy
 - /terms: Terms of use
-
-## Key facts
-- Price: Free
-- Account required: No
-- Data privacy: All data stays in the user's browser
-- Supported output: PDF
-- Templates: Classic, Modern, Minimal, Executive, Creative
-- ATS compatible: Yes
