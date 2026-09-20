@@ -4,12 +4,14 @@ Free online resume builder at [resumebuilder.ramannagar.in](https://resumebuilde
 
 - ATS-friendly templates (Classic, Modern, Minimal)
 - Live preview, one-click PDF download
+- Import resume from JSON or PDF
 - No account required — data stays in the browser (localStorage)
 - Privacy-first: nothing is sent to any server
 
 ## Stack
 
 - **Framework**: Next.js 15 (App Router, Turbopack)
+- **PDF parsing**: `pdfjs-dist` (lazy-loaded)
 - **Language**: TypeScript
 - **Styling**: CSS custom properties (design tokens in `globals.css`)
 - **Analytics**: Google Analytics (`G-YSJBLHXQFW`), Microsoft Clarity (`yktn6voi9e`)
@@ -37,7 +39,7 @@ src/
 │   └── ui/                # Shared UI primitives
 ├── lib/
 │   ├── og.tsx             # Shared OG image generator
-│   ├── resume/            # Resume types, defaults, storage, validation
+│   ├── resume/            # Resume types, defaults, storage, validation, import
 │   └── utils.ts
 └── store/                 # ResumeContext + reducer
 public/

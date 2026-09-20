@@ -17,6 +17,7 @@ export function ImportModal({ onClose }: Props) {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [isPDF, setIsPDF] = useState(false);
+  const [fileName, setFileName] = useState("");
   const fileRef = useRef<HTMLInputElement>(null);
   const selectedFile = useRef<File | null>(null);
 
@@ -24,6 +25,7 @@ export function ImportModal({ onClose }: Props) {
     const file = e.target.files?.[0];
     if (!file) return;
     selectedFile.current = file;
+    setFileName(file.name);
     setIsPDF(file.name.endsWith(".pdf"));
     setError("");
   }
@@ -100,7 +102,7 @@ export function ImportModal({ onClose }: Props) {
                   <polyline points="17 8 12 3 7 8" />
                   <line x1="12" y1="3" x2="12" y2="15" />
                 </svg>
-                <span>{selectedFile.current ? selectedFile.current.name : "Choose .json or .pdf"}</span>
+                <span>{fileName || "Choose .json or .pdf"}</span>
                 <span className="import-file-hint">Click to browse</span>
               </label>
               {isPDF && (
